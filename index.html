@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+
+	<title>LM2 Rank Calculator</title>
+	<meta name="description" content="Calculates your rank in Luigi's Mansion 2: Dark Moon">
+	<meta name="author" content="blueYOSHMIN">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+	<link href="./style.css" rel="stylesheet" />
+	<script type="text/javascript" src="./script.js"></script>
+	<!--link rel="manifest" href="manifest.json" />
+	<link rel="icon" href="icon 48px.png" /-->
+</head>
+<body>
+	<div id="siteContainer"> <div id="contentContainer">
+		<img src="./img/time.png" class="scoreIcons" /> <span>Clear Time: <input type="number" id="timeH" class="scoreInput" min="0" value="0">h <input type="number" id="timeMin" class="scoreInput" min="0" value="12">min <input type="number" id="timeS" class="scoreInput" min="0" value="1">s </span> <br />
+		<img src="./img/ghosts.png" class="scoreIcons" /> <span>Ghosts Captured: <input type="number" id="ghostsCaptured" class="scoreInput" min="0" value="6"> </span> <br />
+		<img src="./img/health.png" class="scoreIcons" /> <span>Health lost: <input type="number" id="healthLost" class="scoreInput" min="0" value="20"> </span> <br />
+		<img src="./img/treasure.png" class="scoreIcons" /> <span>Collected Treasure: <input type="number" id="collectedTreasure" class="scoreInput" min="0" value="556"> </span> <br />
+
+		<br /><br />
+
+		<div id="progressIndicators">
+			<span id="bronzeIndicator" class="rankIndicators">
+				<img class="rankIndicatorIcons" src="./img/bronze.png" /> <br />
+				<input type="number" id="bronzeGoal" class="scoreInput" value="-1000" disabled> <br />
+				<span class="rankIndicatorArrow"></span>
+			</span>
+			<span id="silverIndicator" class="rankIndicators">
+				<img class="rankIndicatorIcons" src="./img/silver.png" /> <br />
+				<input type="number" id="silverGoal" class="scoreInput" value="0"> <br />
+				<span class="rankIndicatorArrow"></span>
+			</span>
+			<span id="goldIndicator"   class="rankIndicators">
+				<img class="rankIndicatorIcons" src="./img/gold.png"   /> <br />
+				<input type="number" id="goldGoal" class="scoreInput" value="1000"> <br />
+				<span class="rankIndicatorArrow"></span>
+			</span>
+		</div>
+		<div id="progressContainer"><div id="progressBarContainer"><div id="progressBar"></div></div></div>
+
+		<div id="finalScoreContainer">
+			<div id="finalScoreDisplay">
+				<span class="rankIndicatorArrow"></span>
+				<span id="totalScoreText">Score:</span>
+				<input type="number" id="finalScore" class="scoreInput" value="435" disabled>
+			</div>
+		</div>
+
+
+		<!--div id="result"> <img src="./img/ghosts.png" class="scoreIcons" /> <span id="ghostsResult" class="resultItem">6</span> x 120 + <img src="./img/treasure.png" class="scoreIcons" /> <span id="treasureResult" class="resultItem">556</span>G - <img src="./img/time.png" class="scoreIcons" /><span id="timeSResult" class="resultItem">721</span>s - <img src="./img/health.png" class="scoreIcons" /><span id="healthResult" class="resultItem">20</span> x 6 = <span id="scoreResult">435</span> </div> <br /><br /-->
+
+		<button class="parallelogram" onclick="rankCalc();">Calculate!</button>
+	</div></div>
+</body>
