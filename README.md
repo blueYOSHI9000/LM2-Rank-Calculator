@@ -3,6 +3,8 @@
 - add list of levels for a quick select
 - add credits & calculation explanation on site
 - better looking inputs
+- automatic calculations, no button-press needed
+- no score displayed when loading the site
 - a better README, I suppose
 
 ## Credits
