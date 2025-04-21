@@ -27,16 +27,24 @@ function rankCalc () {
 	document.getElementById('progressBar'      ).style.width = (progress < 0) ? '10px' : ((progress > 1) ? '100%' : `calc((100% - 20px) * ${minMaxProgress} + 10px)`);
 	document.getElementById('finalScoreDisplay').style.left  = (progress < 0) ? 'calc(10px - 50px)' : ((progress > 1) ? 'calc(100% - 50px)' : `calc((100% - 20px) * ${minMaxProgress} + 10px - 50px)`);
 
+	document.getElementById('progressBar'      ).style.visibility = 'visible';
+
 	document.getElementById('finalScoreDisplay').style.visibility = 'visible';
 	document.getElementById('finalScore').value = score;
 
 	if (score >= goldGoal) {
 		document.getElementById('progressBar').classList.add('goldReached');
+
+		document.getElementById('finalScoreArrow').style.backgroundColor = 'var(--gold)';
 	} else if (score >= silverGoal) {
 		document.getElementById('progressBar').classList.add('silverReached');
 		document.getElementById('progressBar').classList.remove('goldReached');
+
+		document.getElementById('finalScoreArrow').style.backgroundColor = 'var(--silver)';
 	} else {
 		document.getElementById('progressBar').classList.remove('silverReached');
 		document.getElementById('progressBar').classList.remove('goldReached');
+
+		document.getElementById('finalScoreArrow').style.backgroundColor = 'var(--bronze)';
 	}
 }

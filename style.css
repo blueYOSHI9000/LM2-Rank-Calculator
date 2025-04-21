@@ -5,39 +5,102 @@
     url("./Adlib.ttf") format("opentype");
 }
 
+:root {
+	/* Gradients */
+	--bronzeG1: #ab6958;
+	--bronzeG2: #c49890;
+	--silverG1: #6296a7;
+	--silverG2: #bfe5e3;
+	--goldG1: #c08c46;
+	--goldG2: #d0c2a3;
+
+	--bronze: #ad6b63;
+	--silver: #8bacb6;
+	--gold: #dbc39f;
+
+	--siteContainerWidth: 900px;
+}
 
 html {
 	width: 100%;
 	height: 100%;
 
-	background-image: url('./img/Gloomy Manor.jpg');
+	/* The gradient here is just the one from #siteContainer below but adapted to work here since it just scrolls when used on #siteContainer which looks... bad. It looks bad.
+	 * Basically, calculate where #siteContainer starts using (100% - 900px) / 2, then apply the offset by using a percentage of the #siteContainers width by multiplying it with 0.07 (= 7%). */
+	background-image: linear-gradient(90deg, transparent calc((100% - var(--siteContainerWidth)) / 2), #000000bb calc((100% - var(--siteContainerWidth)) / 2 + (var(--siteContainerWidth) * 0.07)),
+		#000000bb calc(100% - (100% - var(--siteContainerWidth)) / 2 - (var(--siteContainerWidth) * 0.07)), transparent calc(100% - (100% - var(--siteContainerWidth)) / 2)),
+		url('./img/Gloomy Manor.jpg');
 	background-size: cover;
 	background-position: center;
+	background-attachment: fixed;
 
 	font-family: 'Ad Lib';
 	color: #fff;
 	text-shadow: 3px 3px 0 #000;
 }
 body {
+	height: 100%;
+
 	margin: 0;
 	paddin: 0;
 }
 
 #siteContainer {
+	height: 100%;
+	width: var(--siteContainerWidth);
+
 	margin: 0 auto;
 
-	width: 900px;
+	/*background: linear-gradient(90deg, transparent, #000000bb 7%, #000000bb 93%, transparent 100%);*/
 }
+
 #contentContainer {
 	padding: 10px 10%;
+}
 
-	background: linear-gradient(90deg, transparent, #000000bb 10%, #000000bb 90%, transparent 100%);
+/* #siteContainer starts scaling with the screen */
+@media (max-width: 950px) {
+	:root {
+		--siteContainerWidth: 95vw !important;
+	}
+
+	html {
+		overflow-x: hidden; /* Stops the scrollbar from showing up, mostly because of the gold indicator which is hard to fix due to it needing an absolute position. */
+	}
+
+	#siteContainer {
+		width: 100%;
+	}
+
+	#contentContainer {
+		margin: 0 calc(var(--siteContainerWidth) * 0.07);
+		padding: 10px;
+	}
+}
+
+/* #siteContainer stops scaling */
+@media (max-width: 500px) {
+	:root {
+		--siteContainerWidth: 475px !important;
+	}
+
+	html {
+		background-image: linear-gradient(#000000bb, #000000bb), url('./img/Gloomy Manor.jpg');
+	}
+
+	#contentContainer {
+		margin: 0;
+	}
 }
 
 /* === SCORE INPUT === */
 .scoreIcons {
+	position: relative;
+
 	width: 20px;
+
 	vertical-align: middle;
+	top: -2px;
 }
 
 .scoreInput {
@@ -112,13 +175,13 @@ body {
 	clip-path: polygon(3% 27%, 50% 50%, 100% 20%, 50% 100%);
 }
 #bronzeIndicator > .rankIndicatorArrow {
-	background-color: #b6877e;
+	background-color: var(--bronze);
 }
 #silverIndicator > .rankIndicatorArrow {
-	background-color: #8aaaad;
+	background-color: var(--silver);
 }
 #goldIndicator > .rankIndicatorArrow {
-	background-color: #d0ad78;
+	background-color: var(--gold);
 }
 
 #bronzeIndicator > .scoreInput {
@@ -134,9 +197,9 @@ body {
 	padding: 2px;
 
 	background-color: #000064;
-	background-color: #1e1edb;
 
-	clip-path: polygon(7px -0.11%, 99.89% 5px, 98.99% 89.39%, 0.27% 96%);
+	--polygon: polygon(7px -0.11%, 99.89% 5px, 98.99% 89.39%, 0.27% 96%);
+	clip-path: var(--polygon);
 }
 
 #progressBarContainer {
@@ -147,24 +210,53 @@ body {
 	width: 100%;
 
 	scale: 0.999;
-	clip-path: polygon(7px -0.11%, 99.89% 5px, 98.99% 89.39%, 0.27% 96%);
+	clip-path: var(--polygon);
 }
 #progressBar {
 	display: block;
 	position: relative;
+	visibility: hidden;
 
 	height: 100%;
 	width: 100%;
 
 	/* Bronze */
-	background: linear-gradient(90deg, #ab6958, #c49890);
+	background: linear-gradient(90deg, var(--bronzeG1), var(--bronzeG2));
 }
 #progressBar.silverReached {
-	background: linear-gradient(90deg, #6296a7, #bfe5e3);
+	background: linear-gradient(90deg, var(--silverG1), var(--silverG2));
 }
 #progressBar.goldReached {
-	background: linear-gradient(90deg, #c08c46, #d0c2a3);
+	background: linear-gradient(90deg, var(--goldG1), var(--goldG2));
 }
+
+@media (max-width: 950px) {
+	#progressIndicators {
+		width: calc(var(--siteContainerWidth) - (var(--siteContainerWidth) * 0.07 * 2));
+	}
+	#progressContainer {
+		width: calc(var(--siteContainerWidth) - (var(--siteContainerWidth) * 0.07 * 2));
+	}
+	#finalScoreContainer {
+		width: calc(var(--siteContainerWidth) - (var(--siteContainerWidth) * 0.07 * 2)) !important;
+	}
+}
+
+@media (max-width: 500px) {
+	#progressIndicators {
+		width: calc(95vw - 70px);
+		margin-left: 30px;
+	}
+	#progressContainer {
+		width: calc(95vw - 70px);
+		margin-left: 30px;
+	}
+	#finalScoreContainer {
+		width: calc(95vw - 70px) !important;
+		margin-left: 30px;
+	}
+}
+
 
 /* === RESULT === */
 #finalScoreDisplay {
@@ -175,7 +267,7 @@ body {
 	visibility: hidden;
 }
 
-#finalScoreDisplay > .rankIndicatorArrow {
+#finalScoreArrow {
 	left: 40px; /* 50px (half of parent) - 10px (half of this) */
 
 	transform: scale(1, -1);
@@ -243,7 +335,7 @@ body {
 
 	z-index: -1;
 
-	background-color: #8685858a;
+	background-color: #b5b5b566;
 
 	clip-path: polygon(24px 12.39%, 93.13% 16px, 89.19% 76.89%, 12.7% 87.66%);
 	/*transform: scale(-1, 1);*/
@@ -254,7 +346,7 @@ body {
 
 .parallelogram:hover:before,
 .parallelogram:hover:after {
-	background-color: #2a77168a;
+	background-color: #31aa1266;
 	scale: 1.05;
 
 	/* It only transitions the background-color when the transition is here because browsers suck massive ass, I suppose - this also means it only transitions to and not from */
@@ -263,7 +355,7 @@ body {
 }
 .parallelogram:active:before,
 .parallelogram:active:after {
-	background-color: #2468128a;
+	background-color: #33971a66;
 	scale: 1.1;
 
 	transition: background-color .1s;
