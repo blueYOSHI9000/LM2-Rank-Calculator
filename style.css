@@ -94,6 +94,10 @@ body {
 }
 
 /* === SCORE INPUT === */
+luigi-input {
+	display: inline-block;
+	width: 100px;
+}
 .scoreIcons {
 	position: relative;
 
@@ -103,9 +107,19 @@ body {
 	top: -2px;
 }
 
-.scoreInput {
+#timeH, #timeMin, #timeS {
+	width: 60px;
+}
+#ghostsCaptured {
+	width: 80px;
+}
+#healthLost {
+	width: 90px;
+}
+
+#liInput {
 	height: 20px;
-	width: 100px;
+	width: calc(100% - 27px); /* I know what you might be thinking, "but shouldn't that just be - 20px?", the answer to that is yes. Browser disagrees though. So 27 it is. */
 
 	border: 0px solid black;
 	padding: 2px;
@@ -117,18 +131,77 @@ body {
 
 	background-color: #517dffbf;
 
-	clip-path: polygon(0% 7.84%, 99.46% 15%, 95.57% 95.06%, 9.56% 83.11%);
-}
-#timeH, #timeMin, #timeS {
-	width: 40px;
-}
-#ghostsCaptured {
-	width: 60px;
-}
-#healthLost {
-	width: 75px;
+	clip-path: polygon(0px 7.84%, calc(100% - 0.7px) 15%, calc(100% - 5px) 95.06%, 9.5px 83.11%);
 }
 
+.liArrows {
+	display: inline-block;
+	position: relative;
+
+	height: 24px;
+	width: 20px;
+
+	vertical-align: bottom;
+	left: -5px;
+	top: 1.5px;
+}
+
+.liArrows > span { /* .liUpArrowContainer, .liDownArrowContainer */
+	position: absolute;
+
+	height: 50%;
+	width: 100%;
+
+	background-color: #517dffbf;
+
+	cursor: pointer;
+}
+.liArrows > span:hover {
+	background-color: #3960d0bf;
+}
+.liArrows > span:active, #liInput:disabled + .liArrows > span {
+	background-color: #1f3f99bf;
+}
+#liInput:disabled + .liArrows > span {
+	cursor: default;
+}
+
+.liUpArrowContainer {
+	clip-path: polygon(5.4px 19.7%, 100% 22.5%, 91% 94%, 3.4px 100%);
+}
+.liDownArrowContainer {
+	top: 50%;
+
+	clip-path: polygon(3.2px 6.8%, 90.3% 0%, 79.6% 81.2%, 1.3px 77%);
+}
+
+.liUpArrow, .liDownArrow {
+	display: block;
+	position: relative;
+
+	height: 100%;
+	width: 100%;
+
+	background-color: #fff;
+	clip-path: polygon(25% 20%, 50% 35%, 75% 10%, 52% 70%);
+
+	margin-left: 1px;
+}
+.liArrows > span:hover > span { /* .liUpArrow, .liDownArrow */
+	background-color: #c5d4ffbf;
+}
+.liArrows > span:active > span, #liInput:disabled + .liArrows > span > span { /* .liUpArrow, .liDownArrow */
+	background-color: #6088fbbf;
+}
+
+.liUpArrow {
+	transform: scale(-1, -1);
+}
+
+.liDownArrow {
+	left: -0.5px;
+	transform: scale(1, 1);
+}
 
 /* === PROGRESS BAR === */
 
@@ -140,7 +213,7 @@ body {
 	margin-bottom: 10px;
 }
 
-#progressIndicators .scoreInput {
+#progressIndicators luigi-input {
 	position: relative;
 	left: -20px; /* -40px (half of this width) + 20px (half of #progressIndicators width) */
 
@@ -184,7 +257,7 @@ body {
 	background-color: var(--gold);
 }
 
-#bronzeIndicator > .scoreInput {
+#bronzeIndicator > luigi-input {
 	visibility: hidden;
 }
 
@@ -284,7 +357,7 @@ body {
 	text-align: center;
 }
 
-#finalScoreDisplay > .scoreInput {
+#finalScoreDisplay > luigi-input {
 	position: relative;
 	left: 7px; /* 50px (half of parent) - 43px (half of this, 40px width + 7px padding) */
 	top: -7px;
