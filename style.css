@@ -271,7 +271,7 @@ luigi-input {
 
 	background-color: #000064;
 
-	--polygon: polygon(7px -0.11%, 99.89% 5px, 98.99% 89.39%, 0.27% 96%);
+	--polygon: polygon(0% 0%, 100% 5px, 99% 89.39%, 0.70% 100%);
 	clip-path: var(--polygon);
 }
 

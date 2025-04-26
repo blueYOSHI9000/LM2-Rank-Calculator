@@ -11,16 +11,18 @@ function rankCalc () {
 	const score = ghostsCaptured*120 + collectedTreasure - ((timeH*60 + timeMin)*60 + timeS) - healthLost*6;
 
 	const silverGoal = Number(document.getElementById('silverGoal').value);
-	const goldGoal = Number(document.getElementById('goldGoal').value);
-	const goalDiff = goldGoal - silverGoal;
+	const   goldGoal = Number(document.getElementById(  'goldGoal').value);
+	const bronzeToGold = (goldGoal - silverGoal)*2; //Bronze has no lower limit but this puts the same distance between bronze to silver as silver to gold has
 
-	//in decimal, so 0.5 instead of 50%
-	const progress = (score + goalDiff) / ((goldGoal - silverGoal)*2);
+	//Pull the score into the bronze to gold range, then gets its percentage in decimal (so 0.5 instead of 50%)
+		//The issue here is that the comparison can be made over 0 (silver score of -500, gold score of 200 for example).
+		//The solution is to pull the score up inside the bronze to gold range (which is always positive as it's a range).
+		//First we calculate how far in the negative the bronze goal is by doing (bronzeToGold - goldGoal). Then we add it to the score to bring it into the bronze to gold range.
+		//Finally, calculate the percentage with a division.
+	const progress = (score + (bronzeToGold - goldGoal)) / bronzeToGold;
 
+	//cap at 0 & 1
 	const minMaxProgress = (progress < 0) ? 0 : (progress > 1) ? 1 : progress
-
-	//if gold is gotten, fill it all up - otherwise use a 10px gap on the right so it's clearly visible gold was *NOT* gotten
-		//also uses a 10px gap on the left even when it's 0% as there's no true 0% in this calculation
 
 	//this makes it so the bar snaps on both ends - the progress is all between bronze & gold, below bronze it snaps to 0, above gold it snaps to 100%
 		//gold - 1 point leaves a 10px gap on the right that gets filled completely with just 2 extra points
@@ -72,7 +74,7 @@ function valuePlus (elem) {
 
 	elem.value = Number(elem.value) + 1;
 
-	validateInput(elem);
+	validateInput(elem, 'onchange');
 }
 
 /**	Removes 1 from an <input> element.
@@ -98,30 +100,37 @@ function valueMinus (elem) {
 
 	elem.value = Number(elem.value) - 1;
 
-	validateInput(elem);
+	validateInput(elem, 'onchange');
 }
 
 /** Validates the input.
  *
  * 	Removes non-numbers.
  * 	Keeps cursor intact.
- * 	Checks to "min" & "max" & "pad" attributes (ignored with 'oninput').
+ * 	Checks to "min" & "max" & "pad" attributes (only with 'onchange').
+ * 	Calls rankCalc() (only with 'onchange').
  *
  * 	Args:
  * 		elem [HTMLElement]
  * 			The <input> element to be validated.
  *
- * 		oninput [Boolean] <true>
- * 			If false it handles extra stuff (mainly padding) that isn't done with every input.
+ * 		callType [String] <'oninput'>
+ * 			Type of call, can be either 'onchange' or 'oninput'. 'onchange' will do extra stuff, listed above.
  */
-function validateInput (elem, oninput) {
+function validateInput (elem, callType="oninput") {
 	if (!elem instanceof HTMLElement) {
 		console.warn(`Could not find input element.`);
 		return;
 	}
+
+	if (['oninput', 'onchange'].indexOf(callType) === -1) {
+		console.warn(`Expected 'oninput' or 'onchange', got ${callType}.`);
+		callType = 'oninput';
+	}
+
 	const min = elem.getAttribute('min') === null ? null : Number(elem.getAttribute('min'));
 	const max = elem.getAttribute('max') === null ? null : Number(elem.getAttribute('max'));
-	const pad = elem.getAttribute('pad') === null ? 1    : Number(elem.getAttribute('pad')); //for leading zeroes, indicates expected length; 5 = number needs to be 5 digits long, pad with 0
+	const pad = elem.getAttribute('pad') === null ? 1    : Number(elem.getAttribute('pad')); //for leading zeroes, indicates expected length; 5 = number needs to be 5 digits long, pad with zeroes
 	let cursorPosition = Number(elem.selectionStart);
 
 	let value = elem.value;
@@ -130,7 +139,7 @@ function validateInput (elem, oninput) {
 		return;
 	}
 
-	if (oninput !== true) {
+	if (callType === 'onchange') {
 		value = Number(value);
 
 		if (typeof min === 'number' && Number(value) < min) {
@@ -151,7 +160,7 @@ function validateInput (elem, oninput) {
 		}
 	}
 
-	if (oninput !== true) {
+	if (callType === 'onchange') {
 
 		//count leading zeroes
 		let digits = 0;
@@ -214,6 +223,10 @@ function validateInput (elem, oninput) {
 	elem.value = value;
 	elem.selectionStart = cursorPosition;
 	elem.selectionEnd = cursorPosition;
+
+	if (callType === 'onchange') {
+		rankCalc();
+	}
 }
 
 /**	<luigi-input>
@@ -240,8 +253,8 @@ class LuigiInput extends HTMLElement {
 		const textInput = document.createElement('input');
 		textInput.id = 'liInput';
 		//textInput.value = this.getAttribute('value'); //Isn't loaded yet because everything is stupid I guess.....
-		textInput.setAttribute('oninput', 'validateInput(this, true)');
-		textInput.setAttribute('onchange', 'validateInput(this)');
+		textInput.setAttribute('oninput', 'validateInput(this, "oninput")');
+		textInput.setAttribute('onchange', 'validateInput(this, "onchange")');
 		container.appendChild(textInput);
 
 		const arrows = document.createElement('span');
@@ -281,7 +294,7 @@ class LuigiInput extends HTMLElement {
 			return;
 		}
 		elem.value = val;
-		validateInput(elem);
+		validateInput(elem, 'oninput');
 	}
 
 	connectedCallback() {
@@ -292,7 +305,7 @@ class LuigiInput extends HTMLElement {
 			this.shadowRoot.getElementById('liInput').value = newValue;
 		}
 
-		validateInput(this.shadowRoot.getElementById('liInput'));
+		validateInput(this.shadowRoot.getElementById('liInput'), 'oninput');
 
 		return;
 	}
@@ -314,8 +327,7 @@ class LuigiInput extends HTMLElement {
 			return;
 		}
 		elem.setAttribute(name, newValue);
-		validateInput(elem);
+		validateInput(elem, 'oninput');
 	}
 }
 customElements.define("luigi-input", LuigiInput);
-
