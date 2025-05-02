@@ -6,8 +6,9 @@ No, I don't expect this to really be useful, I just felt like making it so here 
 - add list of levels for a quick select
 - add credits & calculation explanation on site
 - better looking disabled inputs (score)
-- automatic calculations, no button-press needed
-- better Progressbar look
+- better defaults
+- no JS warning
+- multiple languages?
 
 ## Credits
 - Score calculations & list of score requirements: https://www.reddit.com/r/LuigisMansion/comments/1cp0ah6/comment/l3om03i/
