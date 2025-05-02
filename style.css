@@ -93,6 +93,10 @@ body {
 	}
 }
 
+a, a:visited {
+	color: #53aeff;
+}
+
 /* === SCORE INPUT === */
 luigi-input {
 	display: inline-block;
