@@ -96,145 +96,132 @@
 			"src": "./logo/transparent-72px.png",
 			"sizes": "72x72",
 			"type": "image/png",
-			"purpose": "transparent"
+			"purpose": "monochrome"
 		},
 		{
 			"src": "./logo/transparent-96px.png",
 			"sizes": "96x96",
 			"type": "image/png",
-			"purpose": "transparent"
+			"purpose": "monochrome"
 		},
 		{
 			"src": "./logo/transparent-120px.png",
 			"sizes": "120x120",
 			"type": "image/png",
-			"purpose": "transparent"
+			"purpose": "monochrome"
 		},
 		{
 			"src": "./logo/transparent-128px.png",
 			"sizes": "128x128",
 			"type": "image/png",
-			"purpose": "transparent"
+			"purpose": "monochrome"
 		},
 		{
 			"src": "./logo/transparent-144px.png",
 			"sizes": "144x144",
 			"type": "image/png",
-			"purpose": "transparent"
+			"purpose": "monochrome"
 		},
 		{
 			"src": "./logo/transparent-152px.png",
 			"sizes": "152x152",
 			"type": "image/png",
-			"purpose": "transparent"
+			"purpose": "monochrome"
 		},
 		{
 			"src": "./logo/transparent-167px.png",
 			"sizes": "167x167",
 			"type": "image/png",
-			"purpose": "transparent"
+			"purpose": "monochrome"
 		},
 		{
 			"src": "./logo/transparent-180px.png",
 			"sizes": "180x180",
 			"type": "image/png",
-			"purpose": "transparent"
+			"purpose": "monochrome"
 		},
 		{
 			"src": "./logo/transparent-192px.png",
 			"sizes": "192x192",
 			"type": "image/png",
-			"purpose": "transparent"
+			"purpose": "monochrome"
 		},
 		{
 			"src": "./logo/transparent-384px.png",
 			"sizes": "384x384",
 			"type": "image/png",
-			"purpose": "transparent"
+			"purpose": "monochrome"
 		},
 		{
 			"src": "./logo/transparent-512px.png",
 			"sizes": "512x512",
 			"type": "image/png",
-			"purpose": "transparent"
+			"purpose": "monochrome"
 		},
 		{
 			"src": "./logo/16px.png",
 			"sizes": "16x16",
-			"type": "image/png",
-			"purpose": "any"
+			"type": "image/png"
 		},
 		{
 			"src": "./logo/32px.png",
 			"sizes": "32x32",
-			"type": "image/png",
-			"purpose": "any"
+			"type": "image/png"
 		},
 		{
 			"src": "./logo/72px.png",
 			"sizes": "72x72",
-			"type": "image/png",
-			"purpose": "any"
+			"type": "image/png"
 		},
 		{
 			"src": "./logo/96px.png",
 			"sizes": "96x96",
-			"type": "image/png",
-			"purpose": "any"
+			"type": "image/png"
 		},
 		{
 			"src": "./logo/120px.png",
 			"sizes": "120x120",
-			"type": "image/png",
-			"purpose": "any"
+			"type": "image/png"
 		},
 		{
 			"src": "./logo/128px.png",
 			"sizes": "128x128",
-			"type": "image/png",
-			"purpose": "any"
+			"type": "image/png"
 		},
 		{
 			"src": "./logo/144px.png",
 			"sizes": "144x144",
-			"type": "image/png",
-			"purpose": "any"
+			"type": "image/png"
 		},
 		{
 			"src": "./logo/152px.png",
 			"sizes": "152x152",
-			"type": "image/png",
-			"purpose": "any"
+			"type": "image/png"
 		},
 		{
 			"src": "./logo/167px.png",
 			"sizes": "167x167",
-			"type": "image/png",
-			"purpose": "any"
+			"type": "image/png"
 		},
 		{
 			"src": "./logo/180px.png",
 			"sizes": "180x180",
-			"type": "image/png",
-			"purpose": "any"
+			"type": "image/png"
 		},
 		{
 			"src": "./logo/192px.png",
 			"sizes": "192x192",
-			"type": "image/png",
-			"purpose": "any"
+			"type": "image/png"
 		},
 		{
 			"src": "./logo/384px.png",
 			"sizes": "384x384",
-			"type": "image/png",
-			"purpose": "any"
+			"type": "image/png"
 		},
 		{
 			"src": "./logo/512px.png",
 			"sizes": "512x512",
-			"type": "image/png",
-			"purpose": "any"
+			"type": "image/png"
 		}
 	]
 }
