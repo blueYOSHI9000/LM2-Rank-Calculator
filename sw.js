@@ -3,44 +3,44 @@
 //If any files here need updating then you better learn how this properly works because you can NOT just add the files here. I think. That's the thing though, I don't know about any of this.
 
 const cacheName = "yoshmincom-LM2RC-v1";
-const appShellFiles = [
-	"./index.html",
-	"./style.css",
-	"./script.js",
-	"./Adlib.tff",
-	"./img/bronze.png",
-	"./img/ghosts.png",
-	"./img/Gloomy Manor.png",
-	"./img/gold.png",
-	"./img/Guard Hall.png",
-	"./img/health.png",
-	"./img/silver.png",
-	"./img/time.png",
-	"./img/treasure.png",
-	"./logo/16px.png",
-	"./logo/32px.png",
-	"./logo/96px.png",
-	"./logo/144px.png",
-	"./logo/512px.png",
-	"./logo/maskable-96px.png",
-	"./logo/maskable-144px.png",
-	"./logo/maskable-512px.png",
-	"./logo/transparent-96px.png",
-	"./logo/transparent-144px.png",
-	"./logo/transparent-512px.png",
-	"./logo/thumbnail.png",
-	"./logo/thumbnail-long.png"
-]
 
 self.addEventListener("install", (e) => {
-  console.log("[Service Worker] Install");
-  e.waitUntil(
-    (async () => {
-      const cache = await caches.open(cacheName);
-      console.log("[Service Worker] Caching all: app shell and content");
-      await cache.addAll(appShellFiles);
-    })(),
-  );
+	console.log("[Service Worker] Install");
+	e.waitUntil(
+		(async () => {
+			const cache = await caches.open(cacheName);
+			console.log("[Service Worker] Caching all: app shell and content");
+			//abismal solution but given Chrome's surprising abundance of stupidity in reporting *which* fucking file failed and the fact it works perfectly fine in a localhost, this is more or less the only way to see which file failed to load.
+			//oh, and Firefox doesn't even try.
+			//fuck all of this.
+			await cache.add("./index.html");
+			await cache.add("./style.css");
+			await cache.add("./script.js");
+			await cache.add("./Adlib.tff");
+			await cache.add("./img/bronze.png");
+			await cache.add("./img/ghosts.png");
+			await cache.add("./img/Gloomy Manor.png");
+			await cache.add("./img/gold.png");
+			await cache.add("./img/Guard Hall.png");
+			await cache.add("./img/health.png");
+			await cache.add("./img/silver.png");
+			await cache.add("./img/time.png");
+			await cache.add("./img/treasure.png");
+			await cache.add("./logo/16px.png");
+			await cache.add("./logo/32px.png");
+			await cache.add("./logo/96px.png");
+			await cache.add("./logo/144px.png");
+			await cache.add("./logo/512px.png");
+			await cache.add("./logo/maskable-96px.png");
+			await cache.add("./logo/maskable-144px.png");
+			await cache.add("./logo/maskable-512px.png");
+			await cache.add("./logo/transparent-96px.png");
+			await cache.add("./logo/transparent-144px.png");
+			await cache.add("./logo/transparent-512px.png");
+			await cache.add("./logo/thumbnail.png");
+			await cache.add("./logo/thumbnail-long.png");
+		})(),
+	);
 });
 
 self.addEventListener("fetch", (e) => {
