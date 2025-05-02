@@ -16,7 +16,7 @@ self.addEventListener("install", (e) => {
 			await cache.add("./index.html");
 			await cache.add("./style.css");
 			await cache.add("./script.js");
-			await cache.add("./Adlib.tff");
+			await cache.add("./Adlib.ttf");
 			await cache.add("./img/bronze.png");
 			await cache.add("./img/ghosts.png");
 			await cache.add("./img/Gloomy Manor.png");
