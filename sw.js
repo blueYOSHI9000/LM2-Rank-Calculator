@@ -19,9 +19,9 @@ self.addEventListener("install", (e) => {
 			await cache.add("./Adlib.ttf");
 			await cache.add("./img/bronze.png");
 			await cache.add("./img/ghosts.png");
-			await cache.add("./img/Gloomy Manor.png");
+			await cache.add("./img/gloomy_manor.png");
 			await cache.add("./img/gold.png");
-			await cache.add("./img/Guard Hall.png");
+			//await cache.add("./img/guard_hall.png"); //not actually needed currently
 			await cache.add("./img/health.png");
 			await cache.add("./img/silver.png");
 			await cache.add("./img/time.png");
