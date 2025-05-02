@@ -318,7 +318,7 @@ class LuigiInput extends HTMLElement {
 		console.log('Icky paint like goop, it"s *moooovin*!');return;
 	}
 
-	static observedAttributes = ['min', 'max', 'pad', 'disabled'];
+	static observedAttributes = ['min', 'max', 'pad', 'disabled', 'aria-label'];
 
 	attributeChangedCallback(name, oldValue, newValue) {
 		const elem = this.shadowRoot.getElementById('liInput');

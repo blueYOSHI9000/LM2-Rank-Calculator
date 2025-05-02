@@ -8,7 +8,7 @@
 	<meta name="author" content="blueYOSHMIN">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-	<link rel="icon" sizes="72x72" href="./logo/transparent 72px.png" />
+	<link rel="icon" sizes="72x72" href="./logo/transparent-72px.png" />
 	<link rel="icon" sizes="32x32" href="./logo/32px.png" />
 	<link rel="icon" sizes="16x16" href="./logo/16px.png" />
 
@@ -21,7 +21,8 @@
 	<link rel="apple-touch-icon" href="./logo/120px.png" />
 
 	<!-- Apple exclusive tags: https://developer.apple.com/library/archive/documentation/AppleApplications/Reference/SafariHTMLRef/Articles/MetaTags.html -->
-	<meta name="apple-mobile-web-app-capable" content="yes" />
+	<meta name="mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-capable" content="yes" /> <!-- Apparently deprecated but Apple still mentions it on their website???? I dunno? I'm still keeping it? -->
 	<meta name="apple-mobile-web-app-status-bar-style" content="black" />
 	<meta name="format-detection" content="telephone=no">
 
@@ -30,7 +31,7 @@
 	<meta property="og:description" content="Calculates your rank in Luigi's Mansion 2: Dark Moon." />
 	<meta property="og:type" content="games" />
 	<meta property="og:url" content="lm2rank.yoshmin.com" />
-	<meta property="og:image" content="./logo/thumbnail.com" />
+	<meta property="og:image" content="./logo/thumbnail.png" />
 
 	<!-- Mastodon stuff -->
 	<!--a rel="me" href="https://wetdry.world/@blueYOSHMIN">Mastodon</a-->
@@ -38,30 +39,41 @@
 
 	<link href="./style.css" rel="stylesheet" />
 	<script type="text/javascript" src="./script.js"></script>
+
+	<style type="text/css"> /* In here to avoid chaining resources, meaning the browser doesn't have to download style.css and *then* the font. */
+		@font-face {
+			font-family: "Ad Lib";
+			font-display: block;
+			src:
+				/*local("Ad Lib"), /* Fuck if I know, it's on my computer and the browser doesn't ever use it, that's why I added the file here in the first place */
+				url("./Adlib.ttf") format("opentype");
+		}
+	</style>
 </head>
 <body>
-	<div id="siteContainer"> <div id="contentContainer">
-		<img src="./img/time.png" class="scoreIcons" /> <span>Clear Time: <luigi-input type="number" id="timeH" min="0" value="0"></luigi-input>h <luigi-input type="number" id="timeMin" min="0" max="60" pad="2" value="12"></luigi-input>min <luigi-input type="number" id="timeS" min="0" max="60" pad="2" value="1"></luigi-input>s </span> <br />
-		<img src="./img/ghosts.png" class="scoreIcons" /> <span>Ghosts Captured: <luigi-input type="number" id="ghostsCaptured" min="0" value="6"></luigi-input> </span> <br />
-		<img src="./img/health.png" class="scoreIcons" /> <span>Health lost: <luigi-input type="number" id="healthLost" min="0" value="20"></luigi-input> </span> <br />
-		<img src="./img/treasure.png" class="scoreIcons" /> <span>Collected Treasure: <luigi-input type="number" id="collectedTreasure" min="0" value="556"></luigi-input> </span> <br />
+  <div id="siteContainer"> <div id="contentContainer">
+	<main>
+		<img src="./img/time.png" class="scoreIcons" alt="" /> <span>Clear Time: <luigi-input type="number" id="timeH" min="0" value="0"></luigi-input>h <luigi-input type="number" id="timeMin" min="0" max="60" pad="2" value="12"></luigi-input>min <luigi-input type="number" id="timeS" min="0" max="60" pad="2" value="1"></luigi-input>s </span> <br />
+		<img src="./img/ghosts.png" class="scoreIcons" alt="" /> <span>Ghosts Captured: <luigi-input type="number" id="ghostsCaptured" min="0" value="6"></luigi-input> </span> <br />
+		<img src="./img/health.png" class="scoreIcons" alt="" /> <span>Health lost: <luigi-input type="number" id="healthLost" min="0" value="20"></luigi-input> </span> <br />
+		<img src="./img/treasure.png" class="scoreIcons" alt="" /> <span>Collected Treasure: <luigi-input type="number" id="collectedTreasure" min="0" value="556"></luigi-input> </span> <br />
 
 		<br /><br />
 
 		<div id="progressIndicators">
 			<span id="bronzeIndicator" class="rankIndicators">
-				<img class="rankIndicatorIcons" src="./img/bronze.png" /> <br />
-				<luigi-input type="number" id="bronzeGoal" value="-1000" disabled></luigi-input> <br />
+				<img class="rankIndicatorIcons" src="./img/bronze.png" alt="Bronze/1-Star icon" /> <br />
+				<luigi-input type="number" id="bronzeGoal" value="-1000" aria-label="bronze goal score" disabled></luigi-input> <br />
 				<span class="rankIndicatorArrow"></span>
 			</span>
 			<span id="silverIndicator" class="rankIndicators">
-				<img class="rankIndicatorIcons" src="./img/silver.png" /> <br />
-				<luigi-input type="number" id="silverGoal" value="0"></luigi-input> <br />
+				<img class="rankIndicatorIcons" src="./img/silver.png" alt="Silver/2-Star icon" /> <br />
+				<luigi-input type="number" id="silverGoal" value="0" aria-label="silver goal score"></luigi-input> <br />
 				<span class="rankIndicatorArrow"></span>
 			</span>
 			<span id="goldIndicator"   class="rankIndicators">
-				<img class="rankIndicatorIcons" src="./img/gold.png"   /> <br />
-				<luigi-input type="number" id="goldGoal" value="1000"></luigi-input> <br />
+				<img class="rankIndicatorIcons" src="./img/gold.png" alt="Gold/3-Star icon"   /> <br />
+				<luigi-input type="number" id="goldGoal" value="1000" aria-label="gold goal score"></luigi-input> <br />
 				<span class="rankIndicatorArrow"></span>
 			</span>
 		</div>
@@ -71,7 +83,7 @@
 			<div id="finalScoreDisplay">
 				<span id="finalScoreArrow" class="rankIndicatorArrow"></span>
 				<span id="totalScoreText">Score:</span>
-				<luigi-input type="number" id="finalScore" value="435" disabled></luigi-input>
+				<luigi-input type="number" id="finalScore" value="435" aria-label="your score" disabled></luigi-input>
 			</div>
 		</div>
 
@@ -80,8 +92,11 @@
 
 		<button class="parallelogram" onclick="rankCalc();">Calculate!</button>
 
+	</main>
+
 		<br /><br /><br />
 
+	<footer>
 		<details>
 			<summary>Credits</summary>
 
@@ -99,5 +114,6 @@
 				<li>LM-styled buttons & look: by Temani Afif on <a href="https://stackoverflow.com/questions/59813538/css-custom-shape-with-irregular-rectangle-and-border" target="_blank" rel="noreferrer" referrerpolicy="no-referrer">Stackoverflow</a></li>
 			</ul>
 		</details>
-	</div></div>
+	</footer>
+  </div></div>
 </body>
