@@ -331,3 +331,7 @@ class LuigiInput extends HTMLElement {
 	}
 }
 customElements.define("luigi-input", LuigiInput);
+
+if ("serviceWorker" in navigator) {
+	navigator.serviceWorker.register("./pwa-examples/js13kpwa/sw.js");
+}
