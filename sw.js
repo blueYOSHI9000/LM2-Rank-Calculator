@@ -2,7 +2,7 @@
 
 //If any files here need updating then you better learn how this properly works because you can NOT just add the files here. I think. That's the thing though, I don't know about any of this.
 
-const cacheName = "yoshmincom-LM2RC-v1";
+const cacheName = "yoshmincom-LM2RC-v2";
 
 self.addEventListener("install", (e) => {
 	console.log("[Service Worker] Install");
@@ -26,6 +26,10 @@ self.addEventListener("install", (e) => {
 			await cache.add("./img/silver.png");
 			await cache.add("./img/time.png");
 			await cache.add("./img/treasure.png");
+			await cache.add("./img/levelBoss.png");
+			await cache.add("./img/levelBoss_blue.png");
+			await cache.add("./img/levelBonus.png");
+			await cache.add("./img/levelBonus_blue.png");
 			await cache.add("./logo/16px.png");
 			await cache.add("./logo/32px.png");
 			await cache.add("./logo/96px.png");

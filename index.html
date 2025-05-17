@@ -52,11 +52,18 @@
 </head>
 <body>
   <div id="siteContainer"> <div id="contentContainer">
+
+  	<noscript><div id="noscript">
+  		<span></span><span></span><span></span><span></span>
+  		<b>NOTE:</b> This site requires JavaScript to work properly. You can still look at each level's goal scores but the calculator will not work. <br /> <br />
+  		Also note that this site uses zero dependecies, zero analytics/ad-stuff or whatnot. This site <i>is</i> hosted on Github but the site itself does not use anything.
+  	</div></noscript>
+
 	<main>
-		<img src="./img/time.png" class="scoreIcons" alt="" /> <span>Clear Time: <luigi-input type="number" id="timeH" min="0" value="0"></luigi-input>h <luigi-input type="number" id="timeMin" min="0" max="60" pad="2" value="12"></luigi-input>min <luigi-input type="number" id="timeS" min="0" max="60" pad="2" value="1"></luigi-input>s </span> <br />
-		<img src="./img/ghosts.png" class="scoreIcons" alt="" /> <span>Ghosts Captured: <luigi-input type="number" id="ghostsCaptured" min="0" value="6"></luigi-input> </span> <br />
-		<img src="./img/health.png" class="scoreIcons" alt="" /> <span>Health lost: <luigi-input type="number" id="healthLost" min="0" value="20"></luigi-input> </span> <br />
-		<img src="./img/treasure.png" class="scoreIcons" alt="" /> <span>Collected Treasure: <luigi-input type="number" id="collectedTreasure" min="0" value="556"></luigi-input> </span> <br />
+		<img src="./img/time.png" class="scoreIcons" alt="" /> <span>Clear Time: <luigi-input type="number" id="timeH" min="0" value="0"></luigi-input>:<luigi-input type="number" id="timeMin" min="0" max="60" pad="2" value="0"></luigi-input>:<luigi-input type="number" id="timeS" min="0" max="60" pad="2" value="0"></luigi-input> </span> <br />
+		<img src="./img/ghosts.png" class="scoreIcons" alt="" /> <span>Ghosts Captured: <luigi-input type="number" id="ghostsCaptured" min="0" value="0"></luigi-input> </span> <br />
+		<img src="./img/health.png" class="scoreIcons" alt="" /> <span>Health lost: <luigi-input type="number" id="healthLost" min="0" value="0"></luigi-input> </span> <br />
+		<img src="./img/treasure.png" class="scoreIcons" alt="" /> <span>Collected Treasure: <luigi-input type="number" id="collectedTreasure" min="0" value="0"></luigi-input> </span> <br />
 
 		<br /><br />
 

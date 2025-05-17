@@ -94,6 +94,77 @@ a, a:visited {
 	color: #53aeff;
 }
 
+/* === No Script Reminder === */
+
+#noscript {
+	position: relative;
+
+	margin-bottom: 20px;
+	padding: 20px;
+	padding-left: 65px;
+}
+
+#noscript:before, #noscript:after {
+	content: "";
+	z-index: -1;
+
+	width: calc(100% + 20px);
+	height: calc(100% + 20px);
+
+	position: absolute;
+	top: -10px;
+	left: -10px;
+
+	background-color: #e11c1c;
+
+	clip-path: polygon(5px 11.29%, 99.87% 5.86%, 97.56% 97.75%, 23px 86.88%);
+}
+#noscript:before {
+	background-color: #7d0505;
+
+	transform: scale(1.02, 1.08);
+}
+
+#noscript > span {
+	display: inline-block;
+	position: absolute;
+
+	width: 40px;
+	left: 10px;
+
+	background: #fff;
+}
+#noscript > span:nth-of-type(1) {
+	height: 100px;
+	top: 30px;
+	left: 15px;
+
+	background: #000;
+
+	clip-path: polygon(4px 2.29%, 94.87% 6.86%, 77.56% 84.75%, 12px 88.88%);
+}
+#noscript > span:nth-of-type(3) {
+	height: 100px;
+	top: 25px;
+
+	clip-path: polygon(4px 2.29%, 94.87% 6.86%, 77.56% 84.75%, 12px 88.88%);
+}
+#noscript > span:nth-of-type(2) {
+	height: 40px;
+	bottom: 25px;
+	left: 15px;
+
+	background: #000;
+
+	clip-path: polygon(13px 17.29%, 79.87% 11.86%, 85.06% 79.75%, 11px 76.38%);
+}
+#noscript > span:nth-of-type(4) {
+	height: 40px;
+	bottom: 30px;
+
+	clip-path: polygon(13px 17.29%, 79.87% 11.86%, 85.06% 79.75%, 11px 76.38%);
+}
+
 /* === SCORE INPUT === */
 luigi-input {
 	display: inline-block;

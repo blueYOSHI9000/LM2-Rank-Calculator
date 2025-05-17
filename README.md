@@ -4,11 +4,7 @@ No, I don't expect this to really be useful, I just felt like making it so here 
 
 ## Todo:
 - add credits & calculation explanation on site
-- better looking disabled inputs (score)
-- better defaults
-- no JS warning
 - multiple languages?
-- entering - is whack
 - add Github link
 
 ## Credits

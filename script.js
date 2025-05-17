@@ -14,6 +14,13 @@ function rankCalc () {
 	const   goldGoal = Number(document.getElementById(  'goldGoal').value);
 	const bronzeToGold = (goldGoal - silverGoal)*2; //Bronze has no lower limit but this puts the same distance between bronze to silver as silver to gold has
 
+	//Save to localStorage
+	localStorage.setItem('values', JSON.stringify({
+		timeH         : timeH, 			timeMin   : timeMin, 	timeS            : timeS,
+		ghostsCaptured: ghostsCaptured, healthLost: healthLost, collectedTreasure: collectedTreasure,
+		silverGoal    : silverGoal, 	goldGoal  : goldGoal
+	}));
+
 	//Pull the score into the bronze to gold range, then gets its percentage in decimal (so 0.5 instead of 50%)
 		//The issue here is that the comparison can be made over 0 (silver score of -500, gold score of 200 for example).
 		//The solution is to pull the score up inside the bronze to gold range (which is always positive as it's a range).
@@ -230,8 +237,8 @@ function validateInput (elem, callType="oninput") {
 
 	value = value.join('');
 
-	if (isNaN(value) && !(oninput === true && value === '-')) {
-		debugger;console.warn(`Got a NaN here.`);
+	if (isNaN(value) && value !== '-') {
+		console.warn(`Got a NaN here.`);
 		value = 0;
 	}
 
@@ -243,6 +250,45 @@ function validateInput (elem, callType="oninput") {
 		rankCalc();
 	}
 }
+
+/**	Loads the saved values.
+ */
+function loadValuesFromStorage () {
+	const lsValue = localStorage.getItem('values');
+
+	if (typeof lsValue !== 'string')
+		return;
+
+	const values = JSON.parse(lsValue);
+
+	if (typeof values.timeH === 'number')
+		document.getElementById('timeH').value = values.timeH;
+
+	if (typeof values.timeMin === 'number')
+		document.getElementById('timeMin').value = values.timeMin;
+
+	if (typeof values.timeS === 'number')
+		document.getElementById('timeS').value = values.timeS;
+
+	if (typeof values.ghostsCaptured === 'number')
+		document.getElementById('ghostsCaptured').value = values.ghostsCaptured;
+
+	if (typeof values.healthLost === 'number')
+		document.getElementById('healthLost').value = values.healthLost;
+
+	if (typeof values.collectedTreasure === 'number')
+		document.getElementById('collectedTreasure').value = values.collectedTreasure;
+
+	if (typeof values.silverGoal === 'number')
+		document.getElementById('silverGoal').value = values.silverGoal;
+
+	if (typeof values.goldGoal === 'number')
+		document.getElementById('goldGoal').value = values.goldGoal;
+
+	rankCalc();
+}
+
+addEventListener("load", loadValuesFromStorage);
 
 /**	<luigi-input>
  *
