@@ -51,6 +51,21 @@ function rankCalc () {
 	}
 }
 
+/**	Selects a level by changing the Silver & Gold goal values. The values are taken from the respective HTML elements.
+ *
+ * 	Args:
+ * 		elem [HTMLElement]
+ * 			The <div> element with the .levelSelect_level class.
+ */
+function selectLevel (elem) {
+	const scoreContainer = elem.getElementsByClassName('levelSelect_scoreContainer')[0].children;
+	const silverGoal = Number(scoreContainer[0].innerText);
+	const   goldGoal = Number(scoreContainer[1].innerText);
+
+	document.getElementById('silverGoal').value = silverGoal;
+	document.getElementById(  'goldGoal').value =   goldGoal;
+}
+
 /**	Adds 1 to an <input> element.
  *
  * 	Args:
