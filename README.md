@@ -1,11 +1,15 @@
+![](./logo/180px.png?raw=true)
+
 # Luigi's Mansion 2: Dark Moon - Rank Calculator
 Does what it says, calculates your rank for a mission but more specifically, it shows the exact score so you *know* how close or far away you were.  
 No, I don't expect this to really be useful, I just felt like making it so here you go. Enjoy. Or else.
 
 ## Todo:
-- add credits & calculation explanation on site
+- add calculation explanation on site
+- make the \<details> look better
+- allow to permanently select levels (keep the :hover thing?)
+- fix the boss & bonus :hover color
 - multiple languages?
-- add Github link
 
 ## Credits
 - Score calculations & list of score requirements: https://www.reddit.com/r/LuigisMansion/comments/1cp0ah6/comment/l3om03i/
