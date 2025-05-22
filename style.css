@@ -18,6 +18,34 @@ html {
 	width: 100%;
 	height: 100%;
 
+	font-family: 'Ad Lib';
+	color: #fff;
+	text-shadow: 3px 3px 0 #000;
+}
+body {
+	width: 100%;
+	height: 100%;
+
+	margin:  0px;
+	padding: 0px;
+}
+
+/**	This is needed because CSS and the scrollbar-gutter property is fucking stupid. This could all be in <html> or <body> but noooooooooooo, that would have been too simple.
+ * 	The scrollbar-gutter property makes it so the layout doesn't shift when a scrollbar appears.
+ * 	Issue is that there's a special exception in its specification. Normally the gutter (when the scrollbar isn't there) is treated as padding, meaning the background image can be seen in it.
+ * 	HOWEVER, if scrollbar-gutter is used on the root element then it no longer treats it as padding but instead as the viewport, meaning there's an ugly fucking white bar instead of the background.
+ * 	And that is why we had to create a whole extra element. Just so there's no ugly white bar. Utterly fucking stupid is what it is.
+ * 	Spent 40 minutes on this btw.
+ */
+#backgroundElement {
+	width: 100%;
+	height: 100%;
+
+	margin:  0px;
+	padding: 0px;
+
+	scrollbar-gutter: stable;
+
 	/* The gradient here is just the one from #siteContainer below but adapted to work here since it just scrolls when used on #siteContainer which looks... bad. It looks bad.
 	 * Basically, calculate where #siteContainer starts using (100% - 900px) / 2, then apply the offset by using a percentage of the #siteContainers width by multiplying it with 0.07 (= 7%). */
 	background-image: linear-gradient(90deg, transparent calc((100% - var(--siteContainerWidth)) / 2), #000000bb calc((100% - var(--siteContainerWidth)) / 2 + (var(--siteContainerWidth) * 0.07)),
@@ -26,16 +54,6 @@ html {
 	background-size: cover;
 	background-position: center;
 	background-attachment: fixed;
-
-	font-family: 'Ad Lib';
-	color: #fff;
-	text-shadow: 3px 3px 0 #000;
-}
-body {
-	height: 100%;
-
-	margin: 0;
-	paddin: 0;
 }
 
 summary {
