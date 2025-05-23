@@ -80,7 +80,7 @@ summary {
 		--siteContainerWidth: 95vw !important;
 	}
 
-	html {
+	html, #backgroundElement {
 		overflow-x: hidden; /* Stops the scrollbar from showing up, mostly because of the gold indicator which is hard to fix due to it needing an absolute position. */
 	}
 
@@ -100,7 +100,7 @@ summary {
 		--siteContainerWidth: 475px !important;
 	}
 
-	html {
+	#backgroundElement {
 		background-image: linear-gradient(#000000bb, #000000bb), url('./img/gloomy_manor.jpg');
 	}
 
@@ -111,6 +111,16 @@ summary {
 
 a, a:visited {
 	color: #53aeff;
+}
+
+.lvl1Surge {
+	color: #80cbe3;
+}
+.lvl2Surge {
+	color: #66d15e;
+}
+.lvl3Surge {
+	color: #e36868;
 }
 
 /* === No Script Reminder === */
@@ -508,8 +518,8 @@ luigi-input {
 	transition: background-color .1s;
 }
 
-.calcButton:hover:before, .calcButton:focus:before,
-.calcButton:hover:after , .calcButton:focus:after {
+.calcButton:hover:before, .calcButton:active:before,
+.calcButton:hover:after , .calcButton:active:after {
 	background-color: #31aa1266;
 	scale: 1.05;
 
@@ -524,6 +534,115 @@ luigi-input {
 
 	transition: background-color .1s;
 	transition: scale .1s;
+}
+
+/* === Navbar === */
+#navbar {
+	display: flex;
+
+	margin-bottom: 20px;
+
+	justify-content: space-between;
+	gap: 10px;
+
+	font-size: 30px;
+}
+
+#navbar > span {
+	position: relative;
+
+	padding: 10px;
+
+	z-index: 0;
+	text-align: center;
+
+	flex-grow: 1;
+
+	cursor: pointer;
+	user-select: none;
+
+	transition: color .1s;
+	transition: scale .1s;
+}
+
+#navbar > span:nth-of-type(1) {
+	--clippo: polygon(0px 7px, calc(100% - 1px) 0%, calc(100% - 8px) 100%, 5px calc(100% - 8px));
+}
+#navbar > span:nth-of-type(2) {
+	--clippo: polygon(5.7px 4px, calc(100% - 5px) 10px, 100% calc(100% - 6.5px), 0px calc(100% - 4px));
+}
+#navbar > span:nth-of-type(3) {
+	--clippo: polygon(0px 5px, 100% 1px, calc(100% - 5px) calc(100% - 2px), 6px calc(100% - 6px));
+}
+
+#navbar > span:before, #navbar > span:after {
+	content: "";
+
+	display: block;
+	position: absolute;
+
+	height: 100%;
+	width: 100%;
+	top: 0;
+	left: 0;
+
+	z-index: -1;
+
+	opacity: 0.55;
+
+	clip-path: var(--clippo);
+
+	transition: opacity .1s;
+}
+/* Inner */
+#navbar > span:after {
+	box-shadow: inset 0px 0px 15px black;
+	background-color: #3a6c80;
+}
+/* Border */
+#navbar > span:before {
+	height: calc(100% + 10px);
+	width : calc(100% + 10px);
+	top : -5px;
+	left: -5px;
+
+	background: linear-gradient(180deg, #84b0bf, #3d7b9a);
+}
+
+#navbar > span.navbar_selected {
+	color: #edd955;
+	cursor: default;
+}
+#navbar > span.navbar_selected:before, #navbar > span.navbar_selected:after {
+	opacity: 1;
+}
+
+
+#navbar > span:not(.navbar_selected):hover {
+	transform: scale(1.03);
+	color: #edd955;
+
+	transition: color .1s;
+	transition: scale .1s;
+}
+#navbar > span:not(.navbar_selected):hover:before, #navbar > span:not(.navbar_selected):hover:after {
+	opacity: 0.8;
+
+	transition: opacity .1s;
+}
+#navbar > span:not(.navbar_selected):active {
+	transform: scale(1.06);
+
+	transition: scale .1s;
+}
+#navbar > span:not(.navbar_selected):active:before, #navbar > span:not(.navbar_selected):active:after {
+	opacity: 0.9;
+
+	transition: opacity .1s;
+}
+
+#explanationContainer, #creditsContainer {
+	display: none;
 }
 
 /* === Level Select === */
@@ -555,7 +674,7 @@ luigi-input {
 }
 
 /* Regular hover/focus */
-.levelSelect_level:hover , .levelSelect_level:focus {
+.levelSelect_level:hover , .levelSelect_level:active {
 	background-color: #51f4286e;
 	scale: 1.05;
 
@@ -576,7 +695,7 @@ luigi-input {
 	background-color: #ffcece6e;
 	transition: background-color .1s;
 }
-.levelSelect_level.levelSelect_Boss:hover , .levelSelect_level.levelSelect_Boss:focus {
+.levelSelect_level.levelSelect_Boss:hover , .levelSelect_level.levelSelect_Boss:active {
 	background-color: #fd4b4b6e;
 	transition: background-color .1s;
 }
@@ -590,7 +709,7 @@ luigi-input {
 	background-color: #9bfbe96e;
 	transition: background-color .1s;
 }
-.levelSelect_level.levelSelect_Bonus:hover , .levelSelect_level.levelSelect_Bonus:focus {
+.levelSelect_level.levelSelect_Bonus:hover , .levelSelect_level.levelSelect_Bonus:active {
 	background-color: #2cffd56e;
 	transition: background-color .1s;
 }

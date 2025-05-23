@@ -38,7 +38,7 @@
 	<meta name="fediverse:creator" content="@blueYOSHMIN@wetdry.world">
 
 	<link href="./style.css" rel="stylesheet" />
-	<script type="text/javascript" src="./script.js"></script>
+	<script type="text/javascript" defer src="./script.js"></script>
 
 	<style type="text/css"> /* In here to avoid chaining resources, meaning the browser doesn't have to download style.css and *then* the font. */
 		@font-face {
@@ -101,9 +101,13 @@
 
 		<br /><br /><br />
 
-		<details id="levelSelectContainer">
-			<summary>Level Select</summary>
+		<div id="navbar">
+			<span class="navbar_selected" onclick="selectNavbarEntry(this.getAttribute('data-navbarentry'));" data-navbarentry="levelSelect">Levels</span>
+			<span                         onclick="selectNavbarEntry(this.getAttribute('data-navbarentry'));" data-navbarentry="explanation">Tips</span>
+			<span                         onclick="selectNavbarEntry(this.getAttribute('data-navbarentry'));" data-navbarentry="credits"    >Credits</span>
+		</div>
 
+		<div id="levelSelectContainer">
 			<div>
 				<span>
 					<div class="levelSelect_level" onclick="selectLevel(this)"><span>A-1</span>    <span class="levelSelect_scoreContainer"><span>    0</span>|<span>1000</span></span> </div>
@@ -168,16 +172,40 @@
 						<span>Final</span>                                                         <span class="levelSelect_scoreContainer">  <span>-1400</span>|<span>-200</span></span> </div>
 				</span>
 			</div>
-		</details>
+		</div>
+
+		<div id="explanationContainer">
+			<!-- Not using <p> tags because they're utterly worthless with a list inside them as they always forcefully end before the list. -->
+			The formula for calculating the rank is as follows: <br />
+			<code>Captured Ghosts x 120 + Collected Treasure - Time in Seconds - Health Lost * 6</code><br /><br />
+
+			This means:
+			<ul style="margin-top: 0px; margin-bottom: 10px;">
+				<li>A ghost is worth 2 minutes</li>
+				<li>One gold coin is worth 1 second, a note 5 seconds and a gold bar 20 seconds</li>
+				<li>You have to be 6s faster to make up for each lost health point</li>
+			</ul><br /><br />
+
+			The strategy to get a 3-star rank usually comes down to getting some gold, being fast and capturing ghosts in the ideal way.<br /><br />
+
+			Capturing multiple ghosts at once gives an additional gold bar for each ghost.<br />Capturing a ghost with a surge gives the following:
+			<ul style="margin: 0px;">
+				<li>A <span class="lvl1Surge">level 1 surge</span> drops 3 coins</li>
+				<li>A <span class="lvl2Surge">level 2 surge</span> drops a gold bar</li>
+				<li>A <span class="lvl3Surge">level 3 surge</span> drops 3 whole gold bars</li>
+			</ul>
+			So the goal is to always capture multiple ghosts at once and to capture them with a surge.<br />Greenies can barely be captured with a <span class="lvl2Surge">level 2 surge</span>, all other ghosts can be captured with a <span class="lvl3Surge">level 3 surge</span>.<br /><br />
+
+			Knowing gold locations tends to not be too important, you usually only need to get the obvious gold locations on the way and look up whether the level has Gold Greenies (<a href="https://www.mariowiki.com/Gold_Greenie#Locations" target="_blank" rel="noreferrer" referrerpolicy="no-referrer">Mariowiki list</a>) or a Bonus Challenge (<a href="https://www.mariowiki.com/Bonus_challenge_(Luigi%27s_Mansion:_Dark_Moon)" target="_blank" rel="noreferrer" referrerpolicy="no-referrer">Mariowiki list</a>) as those give a lot of points.<br /><br />
+
+			Catching a boo usually doesn't matter either way, they give roughly enough coins to make up the time spent on catching them. Get them if you need them, otherwise ignore them.<br />
+			Gems on the other hand are a de-facto waste as they don't give any points. You can still get them if you need them though, most levels are lenient enough for that.
+		</div>
 
 	</main>
 
-	<br /><br /><br />
-
 	<footer>
-		<details>
-			<summary>Credits</summary>
-
+		<div id="creditsContainer">
 			<ul>
 				<li>Hosted on <a href="https://github.com/blueYOSHI9000/LM2-Rank-Calculator" target="_blank" rel="me" referrerpolicy="no-referrer">Github</a></li>
 				<li>Created by blueYOSHMIN
@@ -194,7 +222,7 @@
 				<li>Adlib font: gotten from <a href="https://www.fontspace.com/adlib-font-f157" target="_blank" rel="noreferrer" referrerpolicy="no-referrer">fontspace</a>, originally made by Freeman Craw for ATF</li>
 				<li>LM-styled buttons & look: by Temani Afif on <a href="https://stackoverflow.com/questions/59813538/css-custom-shape-with-irregular-rectangle-and-border" target="_blank" rel="noreferrer" referrerpolicy="no-referrer">Stackoverflow</a></li>
 			</ul>
-		</details>
+		</div>
 	</footer>
   </div></div></div>
 </body>

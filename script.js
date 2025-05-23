@@ -58,6 +58,49 @@ function rankCalc () {
 	}
 }
 
+/**	Selects a navbar entry, updates it's CSS style & displays the according section of the website.
+ *
+ * 	Args:
+ * 		entry [String]
+ * 			The navbar-entry name, can be: 'levelSelect', 'explanation', 'credits'
+ */
+function selectNavbarEntry (entry) {
+	if (['levelSelect', 'explanation', 'credits'].indexOf(entry) === -1) {
+		console.warn('Got invalid navbar-entry: ', entry)
+		return;
+	}
+
+	//.querySelectorAll instead of .getElementsByClassName so it returns a static list with a .forEach function
+	document.querySelectorAll('.navbar_selected').forEach(
+		(elem) => {elem.classList.remove('navbar_selected');}
+	);
+
+	//dumb solution, but it works
+	document.querySelector(`#navbar > span[data-navbarentry="${entry}"]`).classList.add('navbar_selected');
+
+	switch (entry) {
+		case 'levelSelect':
+			document.getElementById('levelSelectContainer').style.display = 'initial';
+			document.getElementById('explanationContainer').style.display = 'none';
+			document.getElementById('creditsContainer'    ).style.display = 'none';
+			break;
+
+		case 'explanation':
+			document.getElementById('levelSelectContainer').style.display = 'none';
+			document.getElementById('explanationContainer').style.display = 'initial';
+			document.getElementById('creditsContainer'    ).style.display = 'none';
+			break;
+
+		case 'credits':
+			document.getElementById('levelSelectContainer').style.display = 'none';
+			document.getElementById('explanationContainer').style.display = 'none';
+			document.getElementById('creditsContainer'    ).style.display = 'initial';
+			break;
+	}
+
+	localStorage.setItem('navbarEntry', entry)
+}
+
 /**	Selects a level by changing the Silver & Gold goal values. The values are taken from the respective HTML elements.
  *
  * 	Args:
@@ -256,39 +299,42 @@ function validateInput (elem, callType="oninput") {
 function loadValuesFromStorage () {
 	const lsValue = localStorage.getItem('values');
 
-	if (typeof lsValue !== 'string')
-		return;
+	if (typeof lsValue === 'string') {
+		const values = JSON.parse(lsValue);
 
-	const values = JSON.parse(lsValue);
+		if (typeof values.timeH === 'number')
+			document.getElementById('timeH').value = values.timeH;
 
-	if (typeof values.timeH === 'number')
-		document.getElementById('timeH').value = values.timeH;
+		if (typeof values.timeMin === 'number')
+			document.getElementById('timeMin').value = values.timeMin;
 
-	if (typeof values.timeMin === 'number')
-		document.getElementById('timeMin').value = values.timeMin;
+		if (typeof values.timeS === 'number')
+			document.getElementById('timeS').value = values.timeS;
 
-	if (typeof values.timeS === 'number')
-		document.getElementById('timeS').value = values.timeS;
+		if (typeof values.ghostsCaptured === 'number')
+			document.getElementById('ghostsCaptured').value = values.ghostsCaptured;
 
-	if (typeof values.ghostsCaptured === 'number')
-		document.getElementById('ghostsCaptured').value = values.ghostsCaptured;
+		if (typeof values.healthLost === 'number')
+			document.getElementById('healthLost').value = values.healthLost;
 
-	if (typeof values.healthLost === 'number')
-		document.getElementById('healthLost').value = values.healthLost;
+		if (typeof values.collectedTreasure === 'number')
+			document.getElementById('collectedTreasure').value = values.collectedTreasure;
 
-	if (typeof values.collectedTreasure === 'number')
-		document.getElementById('collectedTreasure').value = values.collectedTreasure;
+		if (typeof values.silverGoal === 'number')
+			document.getElementById('silverGoal').value = values.silverGoal;
 
-	if (typeof values.silverGoal === 'number')
-		document.getElementById('silverGoal').value = values.silverGoal;
+		if (typeof values.goldGoal === 'number')
+			document.getElementById('goldGoal').value = values.goldGoal;
 
-	if (typeof values.goldGoal === 'number')
-		document.getElementById('goldGoal').value = values.goldGoal;
+		rankCalc();
+	}
 
-	rankCalc();
+	const navbarEntry = localStorage.getItem('navbarEntry');
+	if (typeof navbarEntry === 'string')
+		selectNavbarEntry(navbarEntry);
 }
 
-addEventListener("load", loadValuesFromStorage);
+addEventListener("DOMContentLoaded", loadValuesFromStorage);
 
 /**	<luigi-input>
  *
@@ -392,6 +438,10 @@ class LuigiInput extends HTMLElement {
 	}
 }
 customElements.define("luigi-input", LuigiInput);
+
+//has to be after LuigiInput so they're actually constructed before being accessed
+	//no, I did not waste half an hour because I forgot about that, why would you think that
+loadValuesFromStorage();
 
 if ("serviceWorker" in navigator) {
 	navigator.serviceWorker.register("./sw.js");
