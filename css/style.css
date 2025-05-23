@@ -74,6 +74,8 @@ summary {
 	padding: 10px 10%;
 }
 
+/* NOTE: There's another set of identical @media queries in progressBar.css */
+
 /* #siteContainer starts scaling with the screen */
 @media (max-width: 950px) {
 	:root {
@@ -258,8 +260,7 @@ a, a:visited {
 	font-size: 30px;
 	color: #fff;
 	text-shadow: 3px 3px 0 #000;
-}
-.calcButton:hover {
+
 	cursor: pointer;
 }
 
@@ -284,8 +285,8 @@ a, a:visited {
 	transition: background-color .1s;
 }
 
-.calcButton:hover:before, .calcButton:active:before,
-.calcButton:hover:after , .calcButton:active:after {
+.calcButton:hover:before, .calcButton:focus-visible:before, .calcButton:active:before,
+.calcButton:hover:after , .calcButton:focus-visible:after , .calcButton:active:after {
 	background-color: #31aa1266;
 	scale: 1.05;
 

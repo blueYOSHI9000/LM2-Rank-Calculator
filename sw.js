@@ -2,7 +2,7 @@
 
 //If any files here need updating then you better learn how this properly works because you can NOT just add the files here. I think. That's the thing though, I don't know about any of this.
 
-const cacheName = "yoshmincom-LM2RC-v3";
+const cacheName = "yoshmincom-LM2RC-v4";
 
 self.addEventListener("install", (e) => {
 	console.log("[Service Worker] Install");
@@ -10,6 +10,7 @@ self.addEventListener("install", (e) => {
 		(async () => {
 			await caches.delete("yoshmincom-LM2RC-v1");
 			await caches.delete("yoshmincom-LM2RC-v2");
+			await caches.delete("yoshmincom-LM2RC-v3");
 
 			const cache = await caches.open(cacheName);
 			console.log("[Service Worker] Caching all: app shell and content");

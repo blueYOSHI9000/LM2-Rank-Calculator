@@ -106,74 +106,97 @@
 		<br /><br /><br />
 
 		<div id="navbar">
-			<span class="navbar_selected" onclick="selectNavbarEntry(this.getAttribute('data-navbarentry'));" data-navbarentry="levelSelect">Levels</span>
-			<span                         onclick="selectNavbarEntry(this.getAttribute('data-navbarentry'));" data-navbarentry="explanation">Tips</span>
-			<span                         onclick="selectNavbarEntry(this.getAttribute('data-navbarentry'));" data-navbarentry="credits"    >Credits</span>
+			<span class="navbar_selected" tabindex="0" onclick="selectNavbarEntry(this.getAttribute('data-navbarentry'));" data-navbarentry="levelSelect">Levels</span>
+			<span                         tabindex="0" onclick="selectNavbarEntry(this.getAttribute('data-navbarentry'));" data-navbarentry="explanation">Tips</span>
+			<span                         tabindex="0" onclick="selectNavbarEntry(this.getAttribute('data-navbarentry'));" data-navbarentry="credits"    >Credits</span>
 		</div>
 
 		<div id="levelSelectContainer">
-			<div>
+			<div> <!-- -G on the bonus levels stands for "Ghost" -->
 				<span>
-					<div class="levelSelect_level" onclick="selectLevel(this)"><span>A-1</span>    <span class="levelSelect_scoreContainer"><span>    0</span>|<span>1000</span></span> </div>
-					<div class="levelSelect_level" onclick="selectLevel(this)"><span>A-2</span>    <span class="levelSelect_scoreContainer"><span>  600</span>|<span>2000</span></span> </div>
-					<div class="levelSelect_level" onclick="selectLevel(this)"><span>A-3</span>    <span class="levelSelect_scoreContainer"><span> -200</span>|<span> 800</span></span> </div>
-					<div class="levelSelect_level" onclick="selectLevel(this)"><span>A-4</span>    <span class="levelSelect_scoreContainer"><span>  200</span>|<span>1400</span></span> </div>
-					<div class="levelSelect_level" onclick="selectLevel(this)"><span>A-5</span>    <span class="levelSelect_scoreContainer"><span>    0</span>|<span>1000</span></span> </div>
-					<div class="levelSelect_level levelSelect_Boss" onclick="selectLevel(this)">
-						<span>A-<img src="./img/levelBoss_blue.png"  /></span></span>              <span class="levelSelect_scoreContainer"> <span>-1000</span>|<span>-200</span></span> </div>
-					<div class="levelSelect_level levelSelect_Bonus" onclick="selectLevel(this)">
-						<span>A-<img src="./img/levelBonus_blue.png" /></span></span>              <span class="levelSelect_scoreContainer"><span> 1500</span>|<span>2400</span></span> </div>
+					<div data-level="A-1" class="levelSelect_level" tabindex="0" onclick="selectLevel(this)">
+						                                         <span>A-1</span>    <span class="levelSelect_scoreContainer"><span>    0</span>|<span>1000</span></span> </div>
+					<div data-level="A-2" class="levelSelect_level" tabindex="0" onclick="selectLevel(this)">
+						                                         <span>A-2</span>    <span class="levelSelect_scoreContainer"><span>  600</span>|<span>2000</span></span> </div>
+					<div data-level="A-3" class="levelSelect_level" tabindex="0" onclick="selectLevel(this)">
+						                                         <span>A-3</span>    <span class="levelSelect_scoreContainer"><span> -200</span>|<span> 800</span></span> </div>
+					<div data-level="A-4" class="levelSelect_level" tabindex="0" onclick="selectLevel(this)">
+						                                         <span>A-4</span>    <span class="levelSelect_scoreContainer"><span>  200</span>|<span>1400</span></span> </div>
+					<div data-level="A-5" class="levelSelect_level" tabindex="0" onclick="selectLevel(this)">
+						                                         <span>A-5</span>    <span class="levelSelect_scoreContainer"><span>    0</span>|<span>1000</span></span> </div>
+					<div data-level="A-B" class="levelSelect_level levelSelect_Boss"  tabindex="0" onclick="selectLevel(this)">
+						<span>A-<img src="./img/levelBoss_blue.png"  /></span></span><span class="levelSelect_scoreContainer"><span>-1000</span>|<span>-200</span></span> </div>
+					<div data-level="A-G" class="levelSelect_level levelSelect_Bonus" tabindex="0" onclick="selectLevel(this)">
+						<span>A-<img src="./img/levelBonus_blue.png" /></span></span><span class="levelSelect_scoreContainer"><span> 1500</span>|<span>2400</span></span> </div>
 				</span>
 
 				<span>
-					<div class="levelSelect_level" onclick="selectLevel(this)"><span>B-1</span>    <span class="levelSelect_scoreContainer"><span>  500</span>|<span>1400</span></span> </div>
-					<div class="levelSelect_level" onclick="selectLevel(this)"><span>B-2</span>    <span class="levelSelect_scoreContainer"><span> 1000</span>|<span>2200</span></span> </div>
-					<div class="levelSelect_level" onclick="selectLevel(this)"><span>B-3</span>    <span class="levelSelect_scoreContainer"><span> -600</span>|<span> 600</span></span> </div>
-					<div class="levelSelect_level" onclick="selectLevel(this)"><span>B-4</span>    <span class="levelSelect_scoreContainer"><span>  400</span>|<span>1600</span></span> </div>
-					<div class="levelSelect_level" onclick="selectLevel(this)"><span>B-5</span>    <span class="levelSelect_scoreContainer"><span>  200</span>|<span>1400</span></span> </div>
-					<div class="levelSelect_level levelSelect_Boss" onclick="selectLevel(this)">
-						<span>B-<img src="./img/levelBoss_blue.png"  /></span></span>              <span class="levelSelect_scoreContainer"><span> -500</span>|<span>-200</span></span> </div>
-					<div class="levelSelect_level levelSelect_Bonus" onclick="selectLevel(this)">
-						<span>B-<img src="./img/levelBonus_blue.png" /></span></span>              <span class="levelSelect_scoreContainer"><span>  600</span>|<span>1400</span></span> </div>
+					<div data-level="B-1" class="levelSelect_level" tabindex="0" onclick="selectLevel(this)">
+						                                         <span>B-1</span>    <span class="levelSelect_scoreContainer"><span>  500</span>|<span>1400</span></span> </div>
+					<div data-level="B-2" class="levelSelect_level" tabindex="0" onclick="selectLevel(this)">
+						                                         <span>B-2</span>    <span class="levelSelect_scoreContainer"><span> 1000</span>|<span>2200</span></span> </div>
+					<div data-level="B-3" class="levelSelect_level" tabindex="0" onclick="selectLevel(this)">
+						                                         <span>B-3</span>    <span class="levelSelect_scoreContainer"><span> -600</span>|<span> 600</span></span> </div>
+					<div data-level="B-4" class="levelSelect_level" tabindex="0" onclick="selectLevel(this)">
+						                                         <span>B-4</span>    <span class="levelSelect_scoreContainer"><span>  400</span>|<span>1600</span></span> </div>
+					<div data-level="B-5" class="levelSelect_level" tabindex="0" onclick="selectLevel(this)">
+						                                         <span>B-5</span>    <span class="levelSelect_scoreContainer"><span>  200</span>|<span>1400</span></span> </div>
+					<div data-level="B-B" class="levelSelect_level levelSelect_Boss"  tabindex="0" onclick="selectLevel(this)">
+						<span>B-<img src="./img/levelBoss_blue.png"  /></span></span><span class="levelSelect_scoreContainer"><span> -500</span>|<span>-200</span></span> </div>
+					<div data-level="B-G" class="levelSelect_level levelSelect_Bonus" tabindex="0" onclick="selectLevel(this)">
+						<span>B-<img src="./img/levelBonus_blue.png" /></span></span><span class="levelSelect_scoreContainer"><span>  600</span>|<span>1400</span></span> </div>
 				</span>
 
 				<span>
-					<div class="levelSelect_level" onclick="selectLevel(this)"><span>C-1</span>    <span class="levelSelect_scoreContainer"><span>  600</span>|<span>2000</span></span> </div>
-					<div class="levelSelect_level" onclick="selectLevel(this)"><span>C-2</span>    <span class="levelSelect_scoreContainer"><span> 1200</span>|<span>2800</span></span> </div>
-					<div class="levelSelect_level" onclick="selectLevel(this)"><span>C-3</span>    <span class="levelSelect_scoreContainer"><span>  600</span>|<span>1400</span></span> </div>
-					<div class="levelSelect_level" onclick="selectLevel(this)"><span>C-4</span>    <span class="levelSelect_scoreContainer"><span>    0</span>|<span> 400</span></span> </div>
-					<div class="levelSelect_level" onclick="selectLevel(this)"><span>C-5</span>    <span class="levelSelect_scoreContainer"><span> 1600</span>|<span>3200</span></span> </div>
-					<div class="levelSelect_level levelSelect_Boss" onclick="selectLevel(this)">
-						<span>C-<img src="./img/levelBoss_blue.png"  /></span></span>              <span class="levelSelect_scoreContainer"><span> 1600</span>|<span>2200</span></span> </div>
-					<div class="levelSelect_level levelSelect_Bonus" onclick="selectLevel(this)">
-						<span>C-<img src="./img/levelBonus_blue.png" /></span></span>              <span class="levelSelect_scoreContainer"><span> 1400</span>|<span>2200</span></span> </div>
+					<div data-level="C-1" class="levelSelect_level" tabindex="0" onclick="selectLevel(this)">
+						                                         <span>C-1</span>    <span class="levelSelect_scoreContainer"><span>  600</span>|<span>2000</span></span> </div>
+					<div data-level="C-2" class="levelSelect_level" tabindex="0" onclick="selectLevel(this)">
+						                                         <span>C-2</span>    <span class="levelSelect_scoreContainer"><span> 1200</span>|<span>2800</span></span> </div>
+					<div data-level="C-3" class="levelSelect_level" tabindex="0" onclick="selectLevel(this)">
+						                                         <span>C-3</span>    <span class="levelSelect_scoreContainer"><span>  600</span>|<span>1400</span></span> </div>
+					<div data-level="C-4" class="levelSelect_level" tabindex="0" onclick="selectLevel(this)">
+						                                         <span>C-4</span>    <span class="levelSelect_scoreContainer"><span>    0</span>|<span> 400</span></span> </div>
+					<div data-level="C-5" class="levelSelect_level" tabindex="0" onclick="selectLevel(this)">
+						                                         <span>C-5</span>    <span class="levelSelect_scoreContainer"><span> 1600</span>|<span>3200</span></span> </div>
+					<div data-level="C-B" class="levelSelect_level levelSelect_Boss"  tabindex="0" onclick="selectLevel(this)">
+						<span>C-<img src="./img/levelBoss_blue.png"  /></span></span><span class="levelSelect_scoreContainer"><span> 1600</span>|<span>2200</span></span> </div>
+					<div data-level="C-G" class="levelSelect_level levelSelect_Bonus" tabindex="0" onclick="selectLevel(this)">
+						<span>C-<img src="./img/levelBonus_blue.png" /></span></span><span class="levelSelect_scoreContainer"><span> 1400</span>|<span>2200</span></span> </div>
 				</span>
 
 				<span>
-					<div class="levelSelect_level" onclick="selectLevel(this)"><span>D-1</span>    <span class="levelSelect_scoreContainer"><span> 1200</span>|<span>2200</span></span> </div>
-					<div class="levelSelect_level" onclick="selectLevel(this)"><span>D-2</span>    <span class="levelSelect_scoreContainer"><span>  200</span>|<span>1400</span></span> </div>
-					<div class="levelSelect_level" onclick="selectLevel(this)"><span>D-3</span>    <span class="levelSelect_scoreContainer"><span>    0</span>|<span>1200</span></span> </div>
-					<div class="levelSelect_level levelSelect_Boss" onclick="selectLevel(this)">
-						<span>D-<img src="./img/levelBoss_blue.png"  /></span></span>              <span class="levelSelect_scoreContainer"><span> -400</span>|<span>-100</span></span> </div>
-					<div class="levelSelect_level levelSelect_Bonus" onclick="selectLevel(this)">
-						<span>D-<img src="./img/levelBonus_blue.png" /></span></span>              <span class="levelSelect_scoreContainer"><span> 1200</span>|<span>2000</span></span> </div>
+					<div data-level="D-1" class="levelSelect_level" tabindex="0" onclick="selectLevel(this)">
+						                                         <span>D-1</span>    <span class="levelSelect_scoreContainer"><span> 1200</span>|<span>2200</span></span> </div>
+					<div data-level="D-2" class="levelSelect_level" tabindex="0" onclick="selectLevel(this)">
+						                                         <span>D-2</span>    <span class="levelSelect_scoreContainer"><span>  200</span>|<span>1400</span></span> </div>
+					<div data-level="D-3" class="levelSelect_level" tabindex="0" onclick="selectLevel(this)">
+						                                         <span>D-3</span>    <span class="levelSelect_scoreContainer"><span>    0</span>|<span>1200</span></span> </div>
+					<div data-level="D-B" class="levelSelect_level levelSelect_Boss"  tabindex="0" onclick="selectLevel(this)">
+						<span>D-<img src="./img/levelBoss_blue.png"  /></span></span><span class="levelSelect_scoreContainer"><span> -400</span>|<span>-100</span></span> </div>
+					<div data-level="D-G" class="levelSelect_level levelSelect_Bonus" tabindex="0" onclick="selectLevel(this)">
+						<span>D-<img src="./img/levelBonus_blue.png" /></span></span><span class="levelSelect_scoreContainer"><span> 1200</span>|<span>2000</span></span> </div>
 				</span>
 
 				<span>
-					<div class="levelSelect_level" onclick="selectLevel(this)"><span>E-1</span>    <span class="levelSelect_scoreContainer"><span>  600</span>|<span>2200</span></span> </div>
-					<div class="levelSelect_level" onclick="selectLevel(this)"><span>E-2</span>    <span class="levelSelect_scoreContainer"><span> 1200</span>|<span>2800</span></span> </div>
-					<div class="levelSelect_level" onclick="selectLevel(this)"><span>E-3</span>    <span class="levelSelect_scoreContainer"><span> -400</span>|<span>1400</span></span> </div>
-					<div class="levelSelect_level" onclick="selectLevel(this)"><span>E-4</span>    <span class="levelSelect_scoreContainer"><span>-1000</span>|<span>-200</span></span> </div>
-					<div class="levelSelect_level" onclick="selectLevel(this)"><span>E-5</span>    <span class="levelSelect_scoreContainer"><span> 4000</span>|<span>7000</span></span> </div>
-					<div class="levelSelect_level levelSelect_Boss" onclick="selectLevel(this)">
-						<span>E-<img src="./img/levelBoss_blue.png"  /></span></span>              <span class="levelSelect_scoreContainer"><span> -800</span>|<span>-200</span></span> </div>
-					<div class="levelSelect_level levelSelect_Bonus" onclick="selectLevel(this)">
-						<span>E-<img src="./img/levelBonus_blue.png" /></span></span>              <span class="levelSelect_scoreContainer"><span> 1400</span>|<span>2200</span></span> </div>
+					<div data-level="E-1" class="levelSelect_level" tabindex="0" onclick="selectLevel(this)">
+						                                         <span>E-1</span>    <span class="levelSelect_scoreContainer"><span>  600</span>|<span>2200</span></span> </div>
+					<div data-level="E-2" class="levelSelect_level" tabindex="0" onclick="selectLevel(this)">
+						                                         <span>E-2</span>    <span class="levelSelect_scoreContainer"><span> 1200</span>|<span>2800</span></span> </div>
+					<div data-level="E-3" class="levelSelect_level" tabindex="0" onclick="selectLevel(this)">
+						                                         <span>E-3</span>    <span class="levelSelect_scoreContainer"><span> -400</span>|<span>1400</span></span> </div>
+					<div data-level="E-4" class="levelSelect_level" tabindex="0" onclick="selectLevel(this)">
+						                                         <span>E-4</span>    <span class="levelSelect_scoreContainer"><span>-1000</span>|<span>-200</span></span> </div>
+					<div data-level="E-5" class="levelSelect_level" tabindex="0" onclick="selectLevel(this)">
+						                                         <span>E-5</span>    <span class="levelSelect_scoreContainer"><span> 4000</span>|<span>7000</span></span> </div>
+					<div data-level="E-B" class="levelSelect_level levelSelect_Boss"  tabindex="0" onclick="selectLevel(this)">
+						<span>E-<img src="./img/levelBoss_blue.png"  /></span></span><span class="levelSelect_scoreContainer"><span> -800</span>|<span>-200</span></span> </div>
+					<div data-level="E-G" class="levelSelect_level levelSelect_Bonus" tabindex="0" onclick="selectLevel(this)">
+						<span>E-<img src="./img/levelBonus_blue.png" /></span></span><span class="levelSelect_scoreContainer"><span> 1400</span>|<span>2200</span></span> </div>
 				</span>
 
 				<span>
-					<div class="levelSelect_level levelSelect_Boss" onclick="selectLevel(this)">
-						<span>Final</span>                                                         <span class="levelSelect_scoreContainer">  <span>-1400</span>|<span>-200</span></span> </div>
+					<div data-level="F-B" class="levelSelect_level levelSelect_Boss" tabindex="0" onclick="selectLevel(this)">
+						<span>Final</span>                                           <span class="levelSelect_scoreContainer"><span>-1400</span>|<span>-200</span></span> </div>
 				</span>
 			</div>
 		</div>

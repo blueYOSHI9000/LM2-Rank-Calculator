@@ -5,9 +5,8 @@ Does what it says, calculates your rank for a mission but more specifically, it 
 No, I don't expect this to really be useful, I just felt like making it so here you go. Enjoy. Or else.
 
 ## Todo:
-- allow to permanently select levels (keep the :hover thing?)
-- fix the boss & bonus :hover color & regular level color (not green enough, feels red)
 - multiple languages?
+- make sure the sw replaced outdated versions (done manually rn - also not exactly needed when the site is done)
 
 ## Credits
 - Score calculations & list of score requirements: https://www.reddit.com/r/LuigisMansion/comments/1cp0ah6/comment/l3om03i/

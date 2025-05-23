@@ -115,7 +115,24 @@ function selectLevel (elem) {
 	document.getElementById('silverGoal').value = silverGoal;
 	document.getElementById(  'goldGoal').value =   goldGoal;
 
+	unselectLevel();
+
+	elem.classList.add('levelSelect_selected');
+
 	rankCalc();
+
+	localStorage.setItem('selectedLevel', elem.getAttribute('data-level'));
+}
+
+/**	Unselects a level. Only has an effect on the visuals.
+ */
+function unselectLevel () {
+	//.querySelectorAll instead of .getElementsByClassName so it returns a static list with a .forEach function
+	document.querySelectorAll('.levelSelect_selected').forEach(
+		(elem) => {elem.classList.remove('levelSelect_selected');}
+	);
+
+	localStorage.setItem('selectedLevel', '');
 }
 
 /**	Adds 1 to an <input> element.
@@ -142,6 +159,10 @@ function valuePlus (elem) {
 	elem.value = Number(elem.value) + 1;
 
 	validateInput(elem, true);
+
+	const hostId = elem.getRootNode().host.id;
+	if (hostId === 'silverGoal' || hostId === 'goldGoal')
+		unselectLevel();
 }
 
 /**	Removes 1 from an <input> element.
@@ -168,6 +189,10 @@ function valueMinus (elem) {
 	elem.value = Number(elem.value) - 1;
 
 	validateInput(elem, true);
+
+	const hostId = elem.getRootNode().host.id;
+	if (hostId === 'silverGoal' || hostId === 'goldGoal')
+		unselectLevel();
 }
 
 /** Validates the input.
@@ -341,9 +366,33 @@ function loadValuesFromStorage () {
 	const navbarEntry = localStorage.getItem('navbarEntry');
 	if (typeof navbarEntry === 'string')
 		selectNavbarEntry(navbarEntry);
+
+	const selectedLevel = localStorage.getItem('selectedLevel');
+	if (typeof selectedLevel === 'string' && selectedLevel.length > 0) {
+		document.querySelector(`.levelSelect_level[data-level="${selectedLevel}"]`).classList.add('levelSelect_selected');
+	}
 }
 
 addEventListener("DOMContentLoaded", loadValuesFromStorage);
+
+/**	Detects when the user presses enter and manually calls the focused element's onclick function via .click().
+ *
+ * 	Args:
+ * 		e [KeyboardEvent]
+ * 			The event fired by keydown.
+ */
+function manualEnterKey (e) {
+	if (e.key !== "Enter")
+		return;
+
+	const focusedElement = document.activeElement;
+
+	if (focusedElement.parentNode.id === 'navbar' || focusedElement.classList.contains('levelSelect_level')) {
+		focusedElement.click();
+	}
+}
+
+addEventListener("keydown", manualEnterKey);
 
 /**	<luigi-input>
  *
@@ -369,8 +418,10 @@ class LuigiInput extends HTMLElement {
 		const textInput = document.createElement('input');
 		textInput.id = 'liInput';
 		//textInput.value = this.getAttribute('value'); //Isn't loaded yet because everything is stupid I guess.....
-		textInput.setAttribute('oninput', 'validateInput(this, false)');
-		textInput.setAttribute('onchange', 'validateInput(this, true)');
+		textInput.setAttribute('oninput', 'validateInput(this, false);');
+		textInput.setAttribute('onchange', 'validateInput(this, true);');
+		if (this.id === 'silverGoal' || this.id === 'goldGoal')
+			textInput.setAttribute('oninput', 'validateInput(this, false);unselectLevel();');
 		container.appendChild(textInput);
 
 		const arrows = document.createElement('span');

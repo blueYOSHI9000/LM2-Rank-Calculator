@@ -4,7 +4,7 @@
 	margin-bottom: 20px;
 
 	justify-content: space-between;
-	gap: 10px;
+	gap: 15px;
 
 	font-size: 30px;
 }
@@ -79,14 +79,15 @@
 }
 
 
-#navbar > span:not(.navbar_selected):hover {
+#navbar > span:not(.navbar_selected):hover, #navbar > span:not(.navbar_selected):focus-visible {
 	transform: scale(1.03);
 	color: #edd955;
 
 	transition: color .1s;
 	transition: scale .1s;
 }
-#navbar > span:not(.navbar_selected):hover:before, #navbar > span:not(.navbar_selected):hover:after {
+#navbar > span:not(.navbar_selected):hover:before,         #navbar > span:not(.navbar_selected):hover:after,
+#navbar > span:not(.navbar_selected):focus-visible:before, #navbar > span:not(.navbar_selected):focus-visible:after {
 	opacity: 0.8;
 
 	transition: opacity .1s;
