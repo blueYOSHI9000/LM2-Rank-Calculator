@@ -2,13 +2,14 @@
 
 //If any files here need updating then you better learn how this properly works because you can NOT just add the files here. I think. That's the thing though, I don't know about any of this.
 
-const cacheName = "yoshmincom-LM2RC-v2";
+const cacheName = "yoshmincom-LM2RC-v3";
 
 self.addEventListener("install", (e) => {
 	console.log("[Service Worker] Install");
 	e.waitUntil(
 		(async () => {
 			await caches.delete("yoshmincom-LM2RC-v1");
+			await caches.delete("yoshmincom-LM2RC-v2");
 
 			const cache = await caches.open(cacheName);
 			console.log("[Service Worker] Caching all: app shell and content");
@@ -16,7 +17,11 @@ self.addEventListener("install", (e) => {
 			//oh, and Firefox doesn't even try.
 			//fuck all of this.
 			await cache.add("./index.html");
-			await cache.add("./style.css");
+			await cache.add("./css/style.css");
+			await cache.add("./css/luigiInput.css");
+			await cache.add("./css/progressBar.css");
+			await cache.add("./css/navbar.css");
+			await cache.add("./css/levelSelect.css");
 			await cache.add("./script.js");
 			await cache.add("./Adlib.ttf");
 			await cache.add("./img/bronze.png");

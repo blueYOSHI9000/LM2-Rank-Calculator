@@ -350,7 +350,7 @@ class LuigiInput extends HTMLElement {
 
 		const cssLink = document.createElement('link');
 		cssLink.rel = "stylesheet";
-		cssLink.href = "./style.css";
+		cssLink.href = "./css/luigiInput.css";
 		shadow.appendChild(cssLink);
 
 		const container = document.createElement('div');

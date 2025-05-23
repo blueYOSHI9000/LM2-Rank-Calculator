@@ -1,0 +1,101 @@
+#levelSelectContainer > div {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-between;
+	gap: 40px 12px;
+}
+
+/* Background / Rectangle */
+.levelSelect_level {
+	position: relative;
+
+	width: 190px;
+
+	padding: 7px;
+	margin-bottom: 2px;
+
+	cursor: pointer;
+	color: #62c2f0;
+
+	background-color: #d5d5d56e;
+	clip-path: polygon(0% 0%, 100% 9%, 99% 91%, 0.70% 100%);
+}
+.levelSelect_level:nth-of-type(even) {
+	clip-path: polygon(0% 9%, 100% 0%, 99.30% 100%, 1% 91%);
+}
+
+/* Regular hover/focus */
+.levelSelect_level:hover , .levelSelect_level:active {
+	background-color: #51f4286e;
+	scale: 1.05;
+
+	/* It only transitions the background-color when the transition is here because browsers suck massive ass, I suppose - this also means it only transitions to and not from */
+	transition: background-color .1s;
+	transition: scale .1s;
+}
+.levelSelect_level:active {
+	background-color: #35b9146e;
+	scale: 1.1;
+
+	transition: background-color .1s;
+	transition: scale .1s;
+}
+
+/* Boss */
+.levelSelect_level.levelSelect_Boss {
+	background-color: #ffcece6e;
+	transition: background-color .1s;
+}
+.levelSelect_level.levelSelect_Boss:hover , .levelSelect_level.levelSelect_Boss:active {
+	background-color: #fd4b4b6e;
+	transition: background-color .1s;
+}
+.levelSelect_level.levelSelect_Boss:active {
+	background-color: #df2e2e6e;
+	transition: background-color .1s;
+}
+
+/* Bonus */
+.levelSelect_level.levelSelect_Bonus {
+	background-color: #9bfbe96e;
+	transition: background-color .1s;
+}
+.levelSelect_level.levelSelect_Bonus:hover , .levelSelect_level.levelSelect_Bonus:active {
+	background-color: #2cffd56e;
+	transition: background-color .1s;
+}
+.levelSelect_level.levelSelect_Bonus:active {
+	background-color: #0fb7956e;
+	transition: background-color .1s;
+}
+
+
+.levelSelect_level img {
+	position: absolute;
+
+	height: 23px;
+	width: 23px;
+	top: 6px;
+}
+
+
+.levelSelect_scoreContainer {
+	position: absolute;
+
+	right: 0px;
+	margin-right: 6px;
+}
+.levelSelect_scoreContainer > span {
+	display: inline-block;
+
+	width: 57px;
+	padding-right: 4px;
+
+	text-align: right;
+}
+.levelSelect_scoreContainer > span:nth-of-type(1) {
+	color: var(--silver);
+}
+.levelSelect_scoreContainer > span:nth-of-type(2) {
+	color: var(--gold);
+}

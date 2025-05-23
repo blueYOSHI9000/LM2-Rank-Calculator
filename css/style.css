@@ -1,0 +1,303 @@
+:root {
+	/* Gradients */
+	--bronzeG1: #ab6958;
+	--bronzeG2: #c49890;
+	--silverG1: #6296a7;
+	--silverG2: #bfe5e3;
+	--goldG1: #c08c46;
+	--goldG2: #d0c2a3;
+
+	--bronze: #ad6b63;
+	--silver: #9fcdd5;
+	--gold: #fbdf87;
+
+	--siteContainerWidth: 900px;
+}
+
+html {
+	width: 100%;
+	height: 100%;
+
+	font-family: 'Ad Lib';
+	color: #fff;
+	text-shadow: 3px 3px 0 #000;
+}
+body {
+	width: 100%;
+	height: 100%;
+
+	margin:  0px;
+	padding: 0px;
+}
+
+/**	This is needed because CSS and the scrollbar-gutter property is fucking stupid. This could all be in <html> or <body> but noooooooooooo, that would have been too simple.
+ * 	The scrollbar-gutter property makes it so the layout doesn't shift when a scrollbar appears.
+ * 	Issue is that there's a special exception in its specification. Normally the gutter (when the scrollbar isn't there) is treated as padding, meaning the background image can be seen in it.
+ * 	HOWEVER, if scrollbar-gutter is used on the root element then it no longer treats it as padding but instead as the viewport, meaning there's an ugly fucking white bar instead of the background.
+ * 	And that is why we had to create a whole extra element. Just so there's no ugly white bar. Utterly fucking stupid is what it is.
+ * 	Spent 40 minutes on this btw.
+ */
+#backgroundElement {
+	width: 100%;
+	height: 100%;
+
+	margin:  0px;
+	padding: 0px;
+
+	overflow-y: auto; /* Needed so the scrollbar actually appears on this element */
+	scrollbar-gutter: stable;
+
+	/* The gradient here is just the one from #siteContainer below but adapted to work here since it just scrolls when used on #siteContainer which looks... bad. It looks bad.
+	 * Basically, calculate where #siteContainer starts using (100% - 900px) / 2, then apply the offset by using a percentage of the #siteContainers width by multiplying it with 0.07 (= 7%). */
+	background-image: linear-gradient(90deg, transparent calc((100% - var(--siteContainerWidth)) / 2), #000000bb calc((100% - var(--siteContainerWidth)) / 2 + (var(--siteContainerWidth) * 0.07)),
+		#000000bb calc(100% - (100% - var(--siteContainerWidth)) / 2 - (var(--siteContainerWidth) * 0.07)), transparent calc(100% - (100% - var(--siteContainerWidth)) / 2)),
+		url('../img/gloomy_manor.jpg');
+	background-size: cover;
+	background-position: center;
+	background-attachment: fixed;
+}
+
+summary {
+	cursor: pointer;
+}
+
+#siteContainer {
+	height: 100%;
+	width: var(--siteContainerWidth);
+
+	margin: 0 auto;
+
+	/*background: linear-gradient(90deg, transparent, #000000bb 7%, #000000bb 93%, transparent 100%);*/
+}
+
+#contentContainer {
+	padding: 10px 10%;
+}
+
+/* #siteContainer starts scaling with the screen */
+@media (max-width: 950px) {
+	:root {
+		--siteContainerWidth: 95vw !important;
+	}
+
+	html, #backgroundElement {
+		overflow-x: hidden; /* Stops the scrollbar from showing up, mostly because of the gold indicator which is hard to fix due to it needing an absolute position. */
+	}
+
+	#siteContainer {
+		width: 100%;
+	}
+
+	#contentContainer {
+		margin: 0 calc(var(--siteContainerWidth) * 0.07);
+		padding: 10px;
+	}
+}
+
+/* #siteContainer stops scaling */
+@media (max-width: 500px) {
+	:root {
+		--siteContainerWidth: 475px !important;
+	}
+
+	#backgroundElement {
+		background-image: linear-gradient(#000000bb, #000000bb), url('../img/gloomy_manor.jpg');
+	}
+
+	#contentContainer {
+		margin: 0;
+	}
+}
+
+a, a:visited {
+	color: #53aeff;
+}
+
+.lvl1Surge {
+	color: #80cbe3;
+}
+.lvl2Surge {
+	color: #66d15e;
+}
+.lvl3Surge {
+	color: #e36868;
+}
+
+#explanationContainer, #creditsContainer {
+	display: none;
+}
+
+/* === No Script Reminder === */
+
+#noscript {
+	position: relative;
+
+	margin-bottom: 20px;
+	padding: 20px;
+	padding-left: 65px;
+}
+
+#noscript:before, #noscript:after {
+	content: "";
+	z-index: -1;
+
+	width: calc(100% + 20px);
+	height: calc(100% + 20px);
+
+	position: absolute;
+	top: -10px;
+	left: -10px;
+
+	background-color: #e11c1c;
+
+	clip-path: polygon(5px 11.29%, 99.87% 5.86%, 97.56% 97.75%, 23px 86.88%);
+}
+#noscript:before {
+	background-color: #7d0505;
+
+	transform: scale(1.02, 1.08);
+}
+
+#noscript > span {
+	display: inline-block;
+	position: absolute;
+
+	width: 40px;
+	left: 10px;
+
+	background: #fff;
+}
+#noscript > span:nth-of-type(1) {
+	height: 100px;
+	top: 30px;
+	left: 15px;
+
+	background: #000;
+
+	clip-path: polygon(4px 2.29%, 94.87% 6.86%, 77.56% 84.75%, 12px 88.88%);
+}
+#noscript > span:nth-of-type(3) {
+	height: 100px;
+	top: 25px;
+
+	clip-path: polygon(4px 2.29%, 94.87% 6.86%, 77.56% 84.75%, 12px 88.88%);
+}
+#noscript > span:nth-of-type(2) {
+	height: 40px;
+	bottom: 25px;
+	left: 15px;
+
+	background: #000;
+
+	clip-path: polygon(13px 17.29%, 79.87% 11.86%, 85.06% 79.75%, 11px 76.38%);
+}
+#noscript > span:nth-of-type(4) {
+	height: 40px;
+	bottom: 30px;
+
+	clip-path: polygon(13px 17.29%, 79.87% 11.86%, 85.06% 79.75%, 11px 76.38%);
+}
+
+/* === RESULT === */
+#finalScoreDisplay {
+	position: relative;
+
+	width: 100px;
+
+	visibility: hidden;
+}
+
+#finalScoreArrow {
+	left: 40px; /* 50px (half of parent) - 10px (half of this) */
+
+	transform: scale(1, -1);
+	background-color: gold;
+}
+
+#totalScoreText {
+	display: block;
+	position: relative;
+	top: -5px;
+
+	width: 100px;
+
+	text-align: center;
+}
+
+#finalScoreDisplay > luigi-input {
+	position: relative;
+	left: 7px; /* 50px (half of parent) - 43px (half of this, 40px width + 7px padding) */
+	top: -7px;
+
+	width: 80px;
+}
+
+/*.resultItem {
+	color: green;
+}
+
+#scoreResult {
+	color: red;
+}*/
+
+/* === Calculate Button === */
+
+.calcButton {
+	position: relative;
+
+	z-index: 0;
+
+	margin: 15px;
+	border: none;
+	padding: 20px 45px;
+
+	background:none;
+	outline: none;
+
+	font-family: 'Ad Lib';
+	font-size: 30px;
+	color: #fff;
+	text-shadow: 3px 3px 0 #000;
+}
+.calcButton:hover {
+	cursor: pointer;
+}
+
+.calcButton:before,
+.calcButton:after {
+	content: "";
+
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+
+	z-index: -1;
+
+	background-color: #b5b5b566;
+
+	clip-path: polygon(24px 12.39%, 93.13% 16px, 89.19% 76.89%, 12.7% 87.66%);
+	/*transform: scale(-1, 1);*/
+	scale: 1;
+
+	transition: background-color .1s;
+}
+
+.calcButton:hover:before, .calcButton:active:before,
+.calcButton:hover:after , .calcButton:active:after {
+	background-color: #31aa1266;
+	scale: 1.05;
+
+	/* It only transitions the background-color when the transition is here because browsers suck massive ass, I suppose - this also means it only transitions to and not from */
+	transition: background-color .1s;
+	transition: scale .1s;
+}
+.calcButton:active:before,
+.calcButton:active:after {
+	background-color: #33971a66;
+	scale: 1.1;
+
+	transition: background-color .1s;
+	transition: scale .1s;
+}

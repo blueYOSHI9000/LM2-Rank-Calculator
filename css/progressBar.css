@@ -1,0 +1,124 @@
+#progressIndicators {
+	position: relative;
+
+	height: 80px;
+
+	margin-bottom: 10px;
+}
+
+#progressIndicators luigi-input {
+	position: relative;
+	left: -20px; /* -40px (half of this width) + 20px (half of #progressIndicators width) */
+
+	width: 80px;
+}
+
+.rankIndicatorIcons {
+	height: 40px;
+}
+.rankIndicators {
+	position: absolute;
+}
+#bronzeIndicator {
+	left: -10px; /* -20px (half of this) + 10px (gap on progress bar, see script.js) */
+}
+#silverIndicator {
+	left: calc(50% - 20px);
+}
+#goldIndicator {
+	left: calc(100% - 30px); /* 100% - 20px - 10px, see above) */
+}
+
+.rankIndicatorArrow {
+	display: block;
+	position: relative;
+
+	left: 10px;
+
+	height: 20px;
+	width: 20px;
+
+	clip-path: polygon(3% 27%, 50% 50%, 100% 20%, 50% 100%);
+}
+#bronzeIndicator > .rankIndicatorArrow {
+	background-color: var(--bronze);
+}
+#silverIndicator > .rankIndicatorArrow {
+	background-color: var(--silver);
+}
+#goldIndicator > .rankIndicatorArrow {
+	background-color: var(--gold);
+}
+
+#bronzeIndicator > luigi-input {
+	visibility: hidden;
+}
+
+#progressContainer {
+	display: block;
+
+	height: 20px;
+	width: 100%;
+
+	padding: 2px;
+
+	background-color: #000064;
+
+	--polygon: polygon(0% 0%, 100% 5px, 99% 89.39%, 0.70% 100%);
+	clip-path: var(--polygon);
+}
+
+#progressBarContainer {
+	display: block;
+	position: relative;
+
+	height: 100%;
+	width: 100%;
+
+	scale: 0.999;
+	clip-path: var(--polygon);
+}
+#progressBar {
+	display: block;
+	position: relative;
+	visibility: hidden;
+
+	height: 100%;
+	width: 100%;
+
+	/* Bronze */
+	background: linear-gradient(90deg, var(--bronzeG1), var(--bronzeG2));
+}
+#progressBar.silverReached {
+	background: linear-gradient(90deg, var(--silverG1), var(--silverG2));
+}
+#progressBar.goldReached {
+	background: linear-gradient(90deg, var(--goldG1), var(--goldG2));
+}
+
+@media (max-width: 950px) {
+	#progressIndicators {
+		width: calc(var(--siteContainerWidth) - (var(--siteContainerWidth) * 0.07 * 2));
+	}
+	#progressContainer {
+		width: calc(var(--siteContainerWidth) - (var(--siteContainerWidth) * 0.07 * 2));
+	}
+	#finalScoreContainer {
+		width: calc(var(--siteContainerWidth) - (var(--siteContainerWidth) * 0.07 * 2)) !important;
+	}
+}
+
+@media (max-width: 500px) {
+	#progressIndicators {
+		width: calc(95vw - 70px);
+		margin-left: 30px;
+	}
+	#progressContainer {
+		width: calc(95vw - 70px);
+		margin-left: 30px;
+	}
+	#finalScoreContainer {
+		width: calc(95vw - 70px) !important;
+		margin-left: 30px;
+	}
+}
