@@ -137,6 +137,10 @@ a, a:visited {
 	margin-bottom: 20px;
 	padding: 20px;
 	padding-left: 65px;
+
+	z-index: 0;
+
+	font-size: 20px;
 }
 
 #noscript:before, #noscript:after {
