@@ -114,6 +114,8 @@ function selectLevel (elem) {
 
 	document.getElementById('silverGoal').value = silverGoal;
 	document.getElementById(  'goldGoal').value =   goldGoal;
+
+	rankCalc();
 }
 
 /**	Adds 1 to an <input> element.
@@ -139,7 +141,7 @@ function valuePlus (elem) {
 
 	elem.value = Number(elem.value) + 1;
 
-	validateInput(elem, 'onchange');
+	validateInput(elem, true);
 }
 
 /**	Removes 1 from an <input> element.
@@ -165,7 +167,7 @@ function valueMinus (elem) {
 
 	elem.value = Number(elem.value) - 1;
 
-	validateInput(elem, 'onchange');
+	validateInput(elem, true);
 }
 
 /** Validates the input.
@@ -181,16 +183,23 @@ function valueMinus (elem) {
  *
  * 		callType [String] <'oninput'>
  * 			Type of call, can be either 'onchange' or 'oninput'. 'onchange' will do extra stuff, listed above.
+ *
+ * 		calculateRank [Boolean] <true>
+ * 			Whether the rank should be calculated.
  */
-function validateInput (elem, callType="oninput") {
+function validateInput (elem, validateFormatting=true, calculateRank=true) {
 	if (!elem instanceof HTMLElement) {
 		console.warn(`Could not find input element.`);
 		return;
 	}
 
-	if (['oninput', 'onchange'].indexOf(callType) === -1) {
-		console.warn(`Expected 'oninput' or 'onchange', got ${callType}.`);
-		callType = 'oninput';
+	if (typeof validateFormatting !== 'boolean') {
+		console.warn('validateFormatting was invalid: ', validateFormatting);
+		validateFormatting = true;
+	}
+	if (typeof calculateRank !== 'boolean') {
+		console.warn('calculateRank was invalid: ', calculateRank);
+		calculateRank = true;
 	}
 
 	const min = elem.getAttribute('min') === null ? null : Number(elem.getAttribute('min'));
@@ -204,7 +213,7 @@ function validateInput (elem, callType="oninput") {
 		return;
 	}
 
-	if (callType === 'onchange') {
+	if (validateFormatting === true) {
 		value = Number(value);
 
 		if (typeof min === 'number' && Number(value) < min) {
@@ -225,7 +234,7 @@ function validateInput (elem, callType="oninput") {
 		}
 	}
 
-	if (callType === 'onchange') {
+	if (validateFormatting === true) {
 
 		//count leading zeroes
 		let digits = 0;
@@ -289,7 +298,7 @@ function validateInput (elem, callType="oninput") {
 	elem.selectionStart = cursorPosition;
 	elem.selectionEnd = cursorPosition;
 
-	if (callType === 'onchange') {
+	if (calculateRank === true) {
 		rankCalc();
 	}
 }
@@ -360,8 +369,8 @@ class LuigiInput extends HTMLElement {
 		const textInput = document.createElement('input');
 		textInput.id = 'liInput';
 		//textInput.value = this.getAttribute('value'); //Isn't loaded yet because everything is stupid I guess.....
-		textInput.setAttribute('oninput', 'validateInput(this, "oninput")');
-		textInput.setAttribute('onchange', 'validateInput(this, "onchange")');
+		textInput.setAttribute('oninput', 'validateInput(this, false)');
+		textInput.setAttribute('onchange', 'validateInput(this, true)');
 		container.appendChild(textInput);
 
 		const arrows = document.createElement('span');
@@ -401,7 +410,7 @@ class LuigiInput extends HTMLElement {
 			return;
 		}
 		elem.value = val;
-		validateInput(elem, 'oninput');
+		validateInput(elem, true, false);
 	}
 
 	connectedCallback() {
@@ -412,7 +421,7 @@ class LuigiInput extends HTMLElement {
 			this.shadowRoot.getElementById('liInput').value = newValue;
 		}
 
-		validateInput(this.shadowRoot.getElementById('liInput'), 'oninput');
+		validateInput(this.shadowRoot.getElementById('liInput'), true, false);
 
 		return;
 	}
@@ -434,7 +443,7 @@ class LuigiInput extends HTMLElement {
 			return;
 		}
 		elem.setAttribute(name, newValue);
-		validateInput(elem, 'oninput');
+		validateInput(elem, true, false);
 	}
 }
 customElements.define("luigi-input", LuigiInput);
