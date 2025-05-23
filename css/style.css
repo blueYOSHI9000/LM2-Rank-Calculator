@@ -124,10 +124,10 @@ a, a:visited {
 .lvl3Surge {
 	color: #e36868;
 }
-
+/* Done via Javascript so people with JavaScript disabled can still see this
 #explanationContainer, #creditsContainer {
 	display: none;
-}
+}*/
 
 /* === No Script Reminder === */
 

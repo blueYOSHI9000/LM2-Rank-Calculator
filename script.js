@@ -503,6 +503,10 @@ customElements.define("luigi-input", LuigiInput);
 	//no, I did not waste half an hour because I forgot about that, why would you think that
 loadValuesFromStorage();
 
+//done with JS instead of CSS so people without JavaScript can still see the info in here
+document.getElementById('explanationContainer').style.display = 'none';
+document.getElementById('creditsContainer').style.display = 'none';
+
 if ("serviceWorker" in navigator) {
 	navigator.serviceWorker.register("./sw.js");
 }
