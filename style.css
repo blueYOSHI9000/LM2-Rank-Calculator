@@ -44,6 +44,7 @@ body {
 	margin:  0px;
 	padding: 0px;
 
+	overflow-y: auto; /* Needed so the scrollbar actually appears on this element */
 	scrollbar-gutter: stable;
 
 	/* The gradient here is just the one from #siteContainer below but adapted to work here since it just scrolls when used on #siteContainer which looks... bad. It looks bad.
