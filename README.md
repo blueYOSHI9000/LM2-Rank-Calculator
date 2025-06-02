@@ -1,6 +1,6 @@
 ![](./logo/180px.png?raw=true)
 
-**[WEBSITE](lm2rank.yoshmin.com)**
+**[WEBSITE](https://lm2rank.yoshmin.com)**
 
 # Luigi's Mansion 2: Dark Moon - Rank Calculator
 Does what it says, calculates your rank for a mission but more specifically, it shows the exact score so you *know* how close or far away you were.  
